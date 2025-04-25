@@ -6,14 +6,14 @@ utilizando el modelo Whisper de OpenAI con detección inteligente de silencios.
 """
 
 import os
-import ffmpeg
-from openai import OpenAI
+import subprocess
+import openai
 from datetime import datetime
 import json
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 import glob
-import subprocess
+import shutil
 
 class AudioTranscriber:
     """
@@ -37,8 +37,9 @@ class AudioTranscriber:
         """
         self.input_dir = input_dir
         self.output_base_dir = output_dir
-        # Usar exclusivamente la API v1.x
-        self.client = OpenAI(api_key=api_key)
+        # Configurar con la versión antigua de OpenAI
+        openai.api_key = api_key
+        self.client = openai
         
         # La carpeta específica de salida se creará con la fecha al transcribir
 
@@ -87,22 +88,26 @@ class AudioTranscriber:
         audio_dir = os.path.join(main_output_dir, "audio")
         json_dir = os.path.join(main_output_dir, "json")
         text_dir = os.path.join(main_output_dir, "text")
+        temp_dir = os.path.join(main_output_dir, "temp")
         
         os.makedirs(audio_dir, exist_ok=True)
         os.makedirs(json_dir, exist_ok=True)
         os.makedirs(text_dir, exist_ok=True)
+        os.makedirs(temp_dir, exist_ok=True)
         
         print(f"Carpeta de salida creada: {main_output_dir}")
         print(f"  - Audio: {audio_dir}")
         print(f"  - JSON: {json_dir}")
         print(f"  - Texto: {text_dir}")
+        print(f"  - Temp: {temp_dir}")
         
         # Devolver un diccionario con las rutas
         return {
             "main": main_output_dir,
             "audio": audio_dir,
             "json": json_dir,
-            "text": text_dir
+            "text": text_dir,
+            "temp": temp_dir
         }
 
     def extract_audio(self, video_path, output_dirs):
@@ -196,7 +201,7 @@ class AudioTranscriber:
             if duration <= segment_duration:
                 basename = os.path.splitext(os.path.basename(audio_path))[0]
                 segment_filename = f"{basename}_segment_1.mp3"
-                segment_path = os.path.join(output_dirs["audio"], segment_filename)
+                segment_path = os.path.join(output_dirs["temp"], segment_filename)
                 
                 # Convertir el audio completo a mp3 para reducir tamaño
                 audio.export(
@@ -290,10 +295,10 @@ class AudioTranscriber:
                 if end_time <= start_time or end_time - start_time < 5000:  # menos de 5 segundos
                     continue
                 
-                # Exportar el segmento
+                # Exportar el segmento a la carpeta temporal
                 basename = os.path.splitext(os.path.basename(audio_path))[0]
                 segment_filename = f"{basename}_segment_{i+1}.mp3"
-                segment_path = os.path.join(output_dirs["audio"], segment_filename)
+                segment_path = os.path.join(output_dirs["temp"], segment_filename)
                 
                 segment_audio = audio[start_time:end_time]
                 segment_audio.export(
@@ -351,7 +356,7 @@ class AudioTranscriber:
                 if i == num_segments - 1:
                     # No especificamos duración para el último segmento
                     output_segment = os.path.join(
-                        output_dirs["audio"],
+                        output_dirs["temp"],
                         f"{os.path.splitext(os.path.basename(audio_path))[0]}_segment_{i+1}.mp3"
                     )
                     
@@ -370,7 +375,7 @@ class AudioTranscriber:
                     subprocess.run(cmd, check=True, capture_output=True)
                 else:
                     output_segment = os.path.join(
-                        output_dirs["audio"],
+                        output_dirs["temp"],
                         f"{os.path.splitext(os.path.basename(audio_path))[0]}_segment_{i+1}.mp3"
                     )
                     
@@ -412,35 +417,38 @@ class AudioTranscriber:
         try:
             # Abrimos el archivo de audio en modo binario
             with open(audio_path, 'rb') as audio_file:
-                # Usar exclusivamente la API v1.x
-                response = self.client.audio.transcriptions.create(
-                    model="whisper-1",
-                    file=audio_file,
+                # Usar la API antigua de OpenAI
+                response = self.client.Audio.transcribe(
+                    "whisper-1",
+                    audio_file,
                     language="es",
                     response_format="verbose_json"
                 )
             
             # Procesamos la respuesta para extraer información útil
             segments_list = []
-            if hasattr(response, 'segments'):
-                for seg in response.segments:
+            if 'segments' in response:
+                for seg in response['segments']:
                     segment_dict = {
-                        'start': float(seg.start),
-                        'end': float(seg.end),
-                        'text': seg.text
+                        'start': float(seg['start']),
+                        'end': float(seg['end']),
+                        'text': seg['text']
                     }
                     segments_list.append(segment_dict)
             
             transcription_data = {
-                'text': response.text,  # Texto completo de la transcripción
+                'text': response['text'],  # Texto completo de la transcripción
                 'segments': segments_list,  # Lista de diccionarios con segmentos
                 'timestamp': datetime.now().isoformat(),  # Cuándo se realizó
                 'audio_file': audio_path  # Referencia al archivo original
             }
             
-            # Agregamos texto a la transcripción
-            all_text = response.text.strip()
-            print(f"Transcripción: \"{all_text[:100]}...\"")
+            # Mostramos parte de la transcripción
+            all_text = response['text'].strip()
+            if all_text:
+                print(f"Transcripción: \"{all_text[:100]}...\"")
+            else:
+                print("No se obtuvo texto en la transcripción")
             
             return transcription_data
             
@@ -487,44 +495,56 @@ class AudioTranscriber:
                 'timestamp': datetime.now().isoformat()
             }
             
-            # Procesamos cada segmento
-            offset = 0  # Para ajustar las marcas de tiempo
-            
+            # Crear archivos parciales para cada segmento
             for i, segment_path in enumerate(audio_segments):
                 print(f"Transcribiendo segmento {i+1}/{len(audio_segments)}...")
                 try:
                     segment_data = self.transcribe_audio(segment_path)
                     
-                    # Calcular offset para este segmento
-                    if i > 0:
-                        # Obtener duración del segmento anterior usando ffprobe
-                        cmd = [
-                            'ffprobe', 
-                            '-v', 'error',
-                            '-show_entries', 'format=duration',
-                            '-of', 'default=noprint_wrappers=1:nokey=1',
-                            audio_segments[i-1]
-                        ]
-                        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-                        prev_duration = float(result.stdout.strip())
-                        offset += prev_duration
+                    # Guardar transcripción parcial en JSON
+                    segment_json_filename = f"{os.path.splitext(os.path.basename(video_path))[0]}_segment_{i+1}.json"
+                    segment_json_path = os.path.join(output_dirs["json"], segment_json_filename)
+                    with open(segment_json_path, 'w', encoding='utf-8') as f:
+                        json.dump(segment_data, f, ensure_ascii=False, indent=4)
                     
-                    # Ajustamos las marcas de tiempo
+                    # Guardar transcripción parcial en texto
+                    segment_text_filename = f"{os.path.splitext(os.path.basename(video_path))[0]}_segment_{i+1}.txt"
+                    segment_text_path = os.path.join(output_dirs["text"], segment_text_filename)
+                    with open(segment_text_path, 'w', encoding='utf-8') as f:
+                        f.write(segment_data['text'])
+                    
+                    # Copiar segmento de audio a la carpeta final
+                    segment_audio_filename = os.path.basename(segment_path)
+                    segment_audio_path = os.path.join(output_dirs["audio"], segment_audio_filename)
+                    shutil.copy2(segment_path, segment_audio_path)
+                    
+                    # Agregar a la transcripción completa
+                    all_transcription_data['text'] += ' ' + segment_data['text']
+                    
+                    # Calcular offset para ajustar tiempos
+                    offset = 0
+                    if i > 0:
+                        for j in range(i):
+                            # Obtener duración del segmento anterior
+                            prev_json_filename = f"{os.path.splitext(os.path.basename(video_path))[0]}_segment_{j+1}.json"
+                            prev_json_path = os.path.join(output_dirs["json"], prev_json_filename)
+                            with open(prev_json_path, 'r', encoding='utf-8') as f:
+                                prev_data = json.load(f)
+                            if prev_data['segments']:
+                                offset += prev_data['segments'][-1]['end']
+                    
+                    # Ajustar tiempos y añadir segmentos
                     for segment in segment_data['segments']:
                         segment['start'] += offset
                         segment['end'] += offset
-                        
-                    # Añadimos el texto a la transcripción completa
-                    all_transcription_data['text'] += ' ' + segment_data['text']
-                    # Añadimos los segmentos a la lista completa
-                    all_transcription_data['segments'].extend(segment_data['segments'])
+                        all_transcription_data['segments'].append(segment)
                     
                 except Exception as e:
                     print(f"Error transcribiendo segmento {i+1}: {str(e)}")
                     # Continuamos con el siguiente segmento incluso si este falla
             
-            # Paso 4: Guardar los resultados
-            output_filename = os.path.splitext(video_filename)[0] + "_transcription.json"
+            # Paso 4: Guardar los resultados completos
+            output_filename = os.path.splitext(video_filename)[0] + "_transcription_completa.json"
             output_path = os.path.join(output_dirs["json"], output_filename)
             
             # Añadimos información adicional útil
@@ -535,16 +555,49 @@ class AudioTranscriber:
                 'total_segments': len(audio_segments)
             })
             
-            # Guardamos la transcripción en formato JSON
+            # Guardamos la transcripción completa en formato JSON
             try:
                 with open(output_path, 'w', encoding='utf-8') as f:
                     json.dump(all_transcription_data, f, ensure_ascii=False, indent=4)
-                print(f"Transcripción completada y guardada en: {output_path}")
+                print(f"Transcripción completa guardada en: {output_path}")
                 
-                # Exportamos también como texto plano para revisión humana
-                self.export_plain_text(all_transcription_data, output_dirs)
+                # Exportamos también como texto plano completo
+                text_output_filename = os.path.splitext(video_filename)[0] + "_transcription_completa.txt"
+                text_output_path = os.path.join(output_dirs["text"], text_output_filename)
+                
+                # Contenido para el archivo de texto
+                content = []
+                content.append(f"TRANSCRIPCIÓN COMPLETA: {video_filename}")
+                content.append(f"Fecha de procesamiento: {datetime.now().isoformat()}")
+                content.append("")  # Línea en blanco
+                content.append("=" * 80)  # Separador
+                content.append("")  # Línea en blanco
+                content.append(all_transcription_data['text'].strip())
+                
+                with open(text_output_path, 'w', encoding='utf-8') as f:
+                    f.write('\n'.join(content))
+                print(f"Transcripción completa en texto guardada en: {text_output_path}")
+                
+                # Crear versión MP3 completa
+                complete_audio_filename = os.path.splitext(video_filename)[0] + "_audio_completo.mp3"
+                complete_audio_path = os.path.join(output_dirs["audio"], complete_audio_filename)
+                
+                # Copiar el archivo WAV original como MP3
+                cmd = [
+                    'ffmpeg',
+                    '-i', audio_path,
+                    '-acodec', 'libmp3lame',
+                    '-ac', '1',
+                    '-ar', '16k',
+                    '-ab', '64k',
+                    '-y',
+                    complete_audio_path
+                ]
+                subprocess.run(cmd, check=True, capture_output=True)
+                print(f"Audio completo guardado en: {complete_audio_path}")
+                
             except Exception as e:
-                print(f"Error al guardar el archivo JSON: {str(e)}")
+                print(f"Error al guardar archivos finales: {str(e)}")
             
             return all_transcription_data
             
@@ -552,43 +605,3 @@ class AudioTranscriber:
             error_message = f"Error procesando el video {video_filename}: {str(e)}"
             print(error_message)
             raise Exception(error_message)
-
-    def export_plain_text(self, transcription_data, output_dirs, output_filename=None):
-        """
-        Exporta la transcripción a un archivo de texto plano para revisión humana.
-        
-        Args:
-            transcription_data (dict): Datos de la transcripción
-            output_dirs (dict): Diccionario con las rutas de salida
-            output_filename (str, optional): Nombre del archivo de salida
-                                            
-        Returns:
-            str: Ruta al archivo de texto creado
-        """
-        if not output_filename:
-            # Si no se proporciona un nombre, derivamos uno del nombre del archivo de audio
-            video_name = os.path.basename(transcription_data.get('video_path', ''))
-            base_name = os.path.splitext(video_name)[0]
-            output_filename = f"{base_name}_transcript.txt"
-        
-        output_path = os.path.join(output_dirs["text"], output_filename)
-        
-        # Contenido para el archivo de texto
-        content = []
-        
-        # Añadimos un encabezado
-        content.append(f"TRANSCRIPCIÓN: {transcription_data.get('video_filename', 'Archivo')}")
-        content.append(f"Fecha de procesamiento: {transcription_data.get('processing_date', 'Desconocida')}")
-        content.append("")  # Línea en blanco
-        content.append("=" * 80)  # Separador
-        content.append("")  # Línea en blanco
-        
-        # Añadimos el texto principal
-        content.append(transcription_data.get('text', '').strip())
-        
-        # Guardamos el contenido en el archivo
-        with open(output_path, 'w', encoding='utf-8') as f:
-            f.write('\n'.join(content))
-        
-        print(f"Transcripción en texto plano guardada en: {output_path}")
-        return output_path
