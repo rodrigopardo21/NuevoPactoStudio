@@ -1,0 +1,26 @@
+# Entorno virtual
+venv/
+
+# Archivos de entorno con claves API
+.env
+
+# Archivos generados
+data/output/
+data/input/
+**/*.mp3
+**/*.wav
+**/*.mp4
+**/*.json
+
+# Archivos del sistema
+.DS_Store
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.coverage
+htmlcov/
+
+# Logs
+*.log
