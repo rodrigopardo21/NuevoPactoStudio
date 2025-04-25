@@ -1,6 +1,7 @@
 # NuevoPactoStudio - Transcriptor de Sermones
 
-Este proyecto transcribe automáticamente sermones de video a texto utilizando la API de Whisper de OpenAI. Genera archivos de audio segmentados, transcripciones en formato JSON (con marcas de tiempo) y texto plano para revisar y crear contenido para RRSS.
+Este proyecto transcribe automáticamente sermones de video a texto utilizando la API de AssemblyAI.
+Genera archivos de audio, transcripciones en formato JSON (con marcas de tiempo) y texto plano para revisar y crear contenido para RRSS.
 
 ## Estructura del Proyecto
 
@@ -14,7 +15,7 @@ Este proyecto transcribe automáticamente sermones de video a texto utilizando l
 
 - Python 3.12.2
 - ffmpeg
-- OpenAI API Key
+- AssemblyAI API Key
 
 ## Uso
 
