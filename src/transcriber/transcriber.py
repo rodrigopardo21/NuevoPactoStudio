@@ -36,7 +36,10 @@ class AudioTranscriber:
         """
         self.input_dir = input_dir
         self.output_base_dir = output_dir
-        self.client = OpenAI(api_key=api_key)
+        # Configurar client OpenAI de manera segura para cualquier versión
+        import openai
+        openai.api_key = api_key
+        self.client = openai
         
         # La carpeta específica de salida se creará con la fecha al transcribir
 
@@ -346,16 +349,28 @@ class AudioTranscriber:
         try:
             # Abrimos el archivo de audio en modo binario
             with open(audio_path, 'rb') as audio_file:
-                # Realizamos la transcripción usando la API de OpenAI
-                response = self.client.audio.transcriptions.create(
-                    model="whisper-1",
-                    file=audio_file,
-                    language="es",
-                    response_format="verbose_json"
-                )
+                # Verificar si estamos usando la API antigua o la nueva
+                try:
+                    # Intentar con la nueva API (v1.x)
+                    response = self.client.audio.transcriptions.create(
+                        model="whisper-1",
+                        file=audio_file,
+                        language="es",
+                        response_format="verbose_json"
+                    )
+                except (AttributeError, TypeError):
+                    # Si falla, usar la API antigua (v0.x)
+                    response = self.client.Audio.transcribe(
+                        model="whisper-1",
+                        file=audio_file,
+                        language="es",
+                        response_format="verbose_json"
+                    )
             
-            # Procesamos la respuesta para extraer información útil
+            # Procesar la respuesta según el formato recibido
             segments_list = []
+            
+            # Si response es un objeto con atributos
             if hasattr(response, 'segments'):
                 for seg in response.segments:
                     segment_dict = {
@@ -364,16 +379,29 @@ class AudioTranscriber:
                         'text': seg.text
                     }
                     segments_list.append(segment_dict)
+                    
+                text = response.text
+                
+            # Si response es un diccionario (API antigua)
+            elif isinstance(response, dict):
+                text = response.get('text', '')
+                for seg in response.get('segments', []):
+                    segment_dict = {
+                        'start': float(seg.get('start', 0)),
+                        'end': float(seg.get('end', 0)),
+                        'text': seg.get('text', '')
+                    }
+                    segments_list.append(segment_dict)
             
             transcription_data = {
-                'text': response.text,  # Texto completo de la transcripción
+                'text': text,  # Texto completo de la transcripción
                 'segments': segments_list,  # Lista de diccionarios con segmentos
                 'timestamp': datetime.now().isoformat(),  # Cuándo se realizó
                 'audio_file': audio_path  # Referencia al archivo original
             }
             
             # Agregamos texto a la transcripción
-            all_text = response.text.strip()
+            all_text = text.strip()
             print(f"Transcripción: \"{all_text[:100]}...\"")
             
             return transcription_data
