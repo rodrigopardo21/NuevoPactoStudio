@@ -13,6 +13,7 @@ import json
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 import glob
+import subprocess
 
 class AudioTranscriber:
     """
@@ -121,20 +122,33 @@ class AudioTranscriber:
         audio_path = os.path.join(output_dirs["audio"], audio_filename)
         
         try:
-            # Configurar el proceso de FFmpeg para extraer audio
-            stream = ffmpeg.input(video_path)
-            stream = ffmpeg.output(stream, audio_path,
-                                 acodec='pcm_s16le',  # Codec de audio sin pérdida
-                                 ac=1,                 # Mono (1 canal)
-                                 ar='16k')            # Frecuencia de muestreo de 16kHz
+            # Usar subprocess directamente en lugar de ffmpeg-python
+            cmd = [
+                'ffmpeg',
+                '-i', video_path,
+                '-acodec', 'pcm_s16le',
+                '-ac', '1',
+                '-ar', '16k',
+                '-y',  # Sobrescribir si existe
+                audio_path
+            ]
             
-            # Ejecutar el proceso de FFmpeg
-            ffmpeg.run(stream, overwrite_output=True, capture_stdout=True, capture_stderr=True)
+            # Ejecutar el proceso
+            result = subprocess.run(
+                cmd, 
+                stdout=subprocess.PIPE, 
+                stderr=subprocess.PIPE,
+                text=True,
+                check=True
+            )
             
             return audio_path
             
-        except ffmpeg.Error as e:
-            error_message = f"Error al extraer audio de {video_path}: {str(e)}"
+        except subprocess.CalledProcessError as e:
+            error_message = f"Error al extraer audio de {video_path}: {e.stderr}"
+            raise Exception(error_message)
+        except Exception as e:
+            error_message = f"Error inesperado al extraer audio: {str(e)}"
             raise Exception(error_message)
 
     def split_audio_hybrid(self, audio_path, output_dirs, segment_duration=600):
@@ -153,9 +167,20 @@ class AudioTranscriber:
         """
         try:
             # Obtenemos la duración del audio usando ffprobe
-            probe = ffmpeg.probe(audio_path)
-            duration = float(probe['format']['duration'])
-            print(f"Duración total del audio: {duration} segundos")
+            try:
+                cmd = [
+                    'ffprobe', 
+                    '-v', 'error',
+                    '-show_entries', 'format=duration',
+                    '-of', 'default=noprint_wrappers=1:nokey=1',
+                    audio_path
+                ]
+                result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+                duration = float(result.stdout.strip())
+                print(f"Duración total del audio: {duration} segundos")
+            except subprocess.CalledProcessError as e:
+                print(f"Error al obtener duración: {e.stderr}")
+                raise
 
             # Cargamos el audio con pydub para buscar silencios
             audio = AudioSegment.from_wav(audio_path)
@@ -303,8 +328,15 @@ class AudioTranscriber:
         """
         try:
             # Obtenemos la duración del audio usando ffprobe
-            probe = ffmpeg.probe(audio_path)
-            duration = float(probe['format']['duration'])
+            cmd = [
+                'ffprobe', 
+                '-v', 'error',
+                '-show_entries', 'format=duration',
+                '-of', 'default=noprint_wrappers=1:nokey=1',
+                audio_path
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+            duration = float(result.stdout.strip())
             print(f"Duración total del audio: {duration} segundos")
 
             # Calculamos cuántos segmentos necesitamos
@@ -322,26 +354,40 @@ class AudioTranscriber:
                         output_dirs["audio"],
                         f"{os.path.splitext(os.path.basename(audio_path))[0]}_segment_{i+1}.mp3"
                     )
-                    # Usamos el formato mp3 para reducir tamaño
-                    ffmpeg.input(audio_path, ss=start_time).output(
-                        output_segment,
-                        acodec='libmp3lame',
-                        ac=1,
-                        ar='16k',
-                        ab='32k'
-                    ).run(overwrite_output=True, capture_stdout=True, capture_stderr=True)
+                    
+                    # Usar ffmpeg con subprocess
+                    cmd = [
+                        'ffmpeg',
+                        '-i', audio_path,
+                        '-ss', str(start_time),
+                        '-acodec', 'libmp3lame',
+                        '-ac', '1',
+                        '-ar', '16k',
+                        '-ab', '32k',
+                        '-y',
+                        output_segment
+                    ]
+                    subprocess.run(cmd, check=True, capture_output=True)
                 else:
                     output_segment = os.path.join(
                         output_dirs["audio"],
                         f"{os.path.splitext(os.path.basename(audio_path))[0]}_segment_{i+1}.mp3"
                     )
-                    ffmpeg.input(audio_path, ss=start_time, t=segment_duration).output(
-                        output_segment,
-                        acodec='libmp3lame',
-                        ac=1,
-                        ar='16k',
-                        ab='32k'
-                    ).run(overwrite_output=True, capture_stdout=True, capture_stderr=True)
+                    
+                    # Usar ffmpeg con subprocess
+                    cmd = [
+                        'ffmpeg',
+                        '-i', audio_path,
+                        '-ss', str(start_time),
+                        '-t', str(segment_duration),
+                        '-acodec', 'libmp3lame',
+                        '-ac', '1',
+                        '-ar', '16k',
+                        '-ab', '32k',
+                        '-y',
+                        output_segment
+                    ]
+                    subprocess.run(cmd, check=True, capture_output=True)
 
                 segments.append(output_segment)
                 print(f"Creado segmento {i+1}/{num_segments}: {output_segment}")
@@ -451,9 +497,16 @@ class AudioTranscriber:
                     
                     # Calcular offset para este segmento
                     if i > 0:
-                        # Obtener duración del segmento anterior
-                        probe = ffmpeg.probe(audio_segments[i-1])
-                        prev_duration = float(probe['format']['duration'])
+                        # Obtener duración del segmento anterior usando ffprobe
+                        cmd = [
+                            'ffprobe', 
+                            '-v', 'error',
+                            '-show_entries', 'format=duration',
+                            '-of', 'default=noprint_wrappers=1:nokey=1',
+                            audio_segments[i-1]
+                        ]
+                        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+                        prev_duration = float(result.stdout.strip())
                         offset += prev_duration
                     
                     # Ajustamos las marcas de tiempo
