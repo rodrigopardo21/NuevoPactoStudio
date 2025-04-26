@@ -1,7 +1,14 @@
-# NuevoPactoStudio - Transcriptor y Subtitulador de Sermones
+# NuevoPactoStudio - Transcriptor y Generador de Contenido para RRSS
 
-Este proyecto transcribe automáticamente sermones de video a texto utilizando la API de AssemblyAI.
+Este proyecto transcribe automáticamente sermones de video a texto utilizando la API de AssemblyAI, y facilita la creación de contenido para redes sociales (reels, shorts y videos largos) a partir de los sermones procesados.
+
+## Fases del Proyecto
+
+### Fase 1: Transcripción y Subtitulado
 Genera audio extraído, transcripciones detalladas con marcas de tiempo y subtítulos perfectamente sincronizados (SRT).
+
+### Fase 2: Generación de Contenido para RRSS
+Analiza las transcripciones para extraer segmentos clave que puedan convertirse en reels o shorts, manteniendo el audio y texto original.
 
 ## Características
 
@@ -23,12 +30,18 @@ Genera audio extraído, transcripciones detalladas con marcas de tiempo y subtí
       - `*_transcript.txt`: Transcripción en texto plano
       - `*_transcript_detailed.txt`: Transcripción con marcas de tiempo
       - `*_subtitles.srt`: Archivo de subtítulos sincronizados
+- `data/segments/`: Segmentos clave extraídos para reels/shorts
+- `data/reels/`: Selecciones finales de segmentos para crear contenido
 - `src/`: Scripts y código fuente
-  - `transcribe_assemblyai.py`: Script principal de transcripción
-  - `create_accurate_srt.py`: Generador de subtítulos preciso
-  - `recortar_video.py`: Herramienta para recortar videos
-  - `json_to_srt.py`: Conversor de JSON a SRT
-  - `transcriber/`: Módulos de transcripción
+  - **Fase 1: Transcripción**
+    - `recortar_video.py`: Herramienta para recortar videos
+    - `transcribe_assemblyai.py`: Script principal de transcripción
+    - `create_accurate_srt.py`: Generador de subtítulos preciso
+    - `json_to_srt.py`: Conversor de JSON a SRT
+    - `transcriber/`: Módulos de transcripción
+  - **Fase 2: Generación de Contenido para RRSS**
+    - `extract_key_segments.py`: Analiza la transcripción para identificar segmentos clave
+    - `select_segments_for_reels.py`: Interfaz para seleccionar y refinar segmentos
 
 ## Requisitos
 
@@ -56,7 +69,9 @@ ASSEMBLYAI_API_KEY=tu_clave_api_de_assemblyai
 
 ## Uso
 
-### 1. Recortar un video para transcripción
+### Fase 1: Transcripción y Subtitulado
+
+#### 1. Recortar un video para transcripción
 
 ```bash
 python src/recortar_video.py
@@ -67,7 +82,7 @@ Este script te guiará para:
 - Definir los tiempos de inicio y fin
 - Recortar y guardar en `data/input/`
 
-### 2. Transcribir un video y generar subtítulos
+#### 2. Transcribir un video y generar subtítulos
 
 ```bash
 python src/transcribe_assemblyai.py
@@ -79,13 +94,40 @@ Este script te guiará para:
 - Enviar a AssemblyAI para transcripción
 - Guardar todos los archivos generados
 
-### 3. Regenerar subtítulos (opcional)
+#### 3. Regenerar subtítulos (opcional)
 
 Si necesitas regenerar los subtítulos sin volver a transcribir:
 
 ```bash
 python src/create_accurate_srt.py
 ```
+
+### Fase 2: Generación de Contenido para RRSS
+
+#### 1. Extraer segmentos clave de las transcripciones
+
+```bash
+python src/extract_key_segments.py
+```
+
+Este script:
+- Analiza los archivos de transcripción existentes
+- Identifica segmentos potenciales para reels basados en su contenido
+- Asigna puntuaciones de relevancia a cada segmento
+- Guarda los resultados en `data/segments/`
+
+#### 2. Seleccionar y refinar segmentos para reels
+
+```bash
+python src/select_segments_for_reels.py
+```
+
+Este script te permite:
+- Revisar los segmentos identificados en el paso anterior
+- Escuchar el audio de cada segmento para verificar su idoneidad
+- Ajustar los tiempos de inicio/fin para mayor precisión
+- Seleccionar los mejores segmentos para crear reels
+- Guardar tu selección en `data/reels/` para la siguiente fase
 
 ## Resultados
 
