@@ -81,10 +81,14 @@ def main():
     if end_time:
         ffmpeg_cmd.extend(["-to", end_time])
     
-    # Opciones de codificación
+    # Opciones de codificación - MODIFICADO PARA ASEGURAR KEYFRAMES
     ffmpeg_cmd.extend([
-        "-c:v", "copy",
-        "-c:a", "copy",
+        "-c:v", "libx264",  # Recodificar video en lugar de copiar
+        "-preset", "fast",  # Preset de codificación
+        "-crf", "22",       # Calidad del video
+        "-c:a", "aac",      # Codec de audio
+        "-b:a", "128k",     # Bitrate de audio
+        "-force_key_frames", "expr:gte(t,0)",  # Forzar keyframe al inicio
         output_file
     ])
     
