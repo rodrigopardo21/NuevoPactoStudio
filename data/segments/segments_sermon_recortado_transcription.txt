@@ -1,0 +1,810 @@
+SEGMENTOS POTENCIALES PARA REELS
+Archivo fuente: sermon_recortado_transcription.json
+Fecha de extracción: 26/04/2025 16:57:53
+Total de segmentos: 161
+
+#1 - PUNTUACIÓN: 13 - TIEMPO: 00:29:45 a 00:30:05 - DURACIÓN: 19.89s
+TEXTO: "Gloria a Dios. Bendito sea el nombre del Señor. ¿Así que quiero decirte una vez más que pongas tu esperanza en Cristo y en la venida de Cristo, porque nuestras cosas a veces no funcionan como esperamos, no?"
+
+--------------------------------------------------------------------------------
+
+#2 - PUNTUACIÓN: 9 - TIEMPO: 00:07:54 a 00:08:12 - DURACIÓN: 18.19s
+TEXTO: "¿Sin embargo, la gran verdad que te quiero compartir hoy día es que tenemos que tener la esperanza puesta en Dios y por ende en creer que un día nuestro Señor Jesucristo nos va a dar todo lo que le ha prometido que nos va a dar, sí o no?"
+
+--------------------------------------------------------------------------------
+
+#3 - PUNTUACIÓN: 9 - TIEMPO: 00:13:49 a 00:14:01 - DURACIÓN: 11.42s
+TEXTO: "Cada día tenemos que vivirlo en la fe de Cristo, manteniendo la esperanza que Cristo viene, la esperanza de que él va a cumplir su promesa."
+
+--------------------------------------------------------------------------------
+
+#4 - PUNTUACIÓN: 8 - TIEMPO: 00:02:13 a 00:02:35 - DURACIÓN: 21.31s
+TEXTO: "En el nombre de Jesús. Amén. ¿Sabe usted que primera de Tesalonicenses es prácticamente el primer libro que el apóstol Pablo escribió?"
+
+--------------------------------------------------------------------------------
+
+#5 - PUNTUACIÓN: 8 - TIEMPO: 00:12:15 a 00:12:22 - DURACIÓN: 7.77s
+TEXTO: "Tenemos que mantener la esperanza que tenemos que estar buscando a Cristo y preparados, porque él nos hizo promesas."
+
+--------------------------------------------------------------------------------
+
+#6 - PUNTUACIÓN: 8 - TIEMPO: 00:20:07 a 00:20:16 - DURACIÓN: 8.36s
+TEXTO: "¿Señor mío y Dios mío, cierto? Y Jesús, bienaventurados los que no han visto y han creído."
+
+--------------------------------------------------------------------------------
+
+#7 - PUNTUACIÓN: 8 - TIEMPO: 00:20:37 a 00:20:51 - DURACIÓN: 14.54s
+TEXTO: "¿Se entiende? Amén. ¿Pero el Señor nos va a dar vida nueva y los que estemos vivos, si el Señor viene pronto y alcanzamos a estar vivos, cierto?"
+
+--------------------------------------------------------------------------------
+
+#8 - PUNTUACIÓN: 8 - TIEMPO: 00:23:35 a 00:23:46 - DURACIÓN: 10.62s
+TEXTO: "¿Pero lo importante aquí es lo nosotros creemos que el Señor va a sacar a la iglesia antes de la tribulación, cierto?"
+
+--------------------------------------------------------------------------------
+
+#9 - PUNTUACIÓN: 8 - TIEMPO: 00:30:18 a 00:30:30 - DURACIÓN: 12.45s
+TEXTO: "Si estamos aquí hoy día, gloria a Dios. Por lo tanto, hermanos, quiero mirar el arrebatamiento de la iglesia con esperanza."
+
+--------------------------------------------------------------------------------
+
+#10 - PUNTUACIÓN: 8 - TIEMPO: 00:31:54 a 00:32:18 - DURACIÓN: 24.25s
+TEXTO: "La eutanasia la tiran para ahorrar dinero público. En medio de todo esto tenemos que fijar nuestros ojos en Cristo, en medio de todo esto tenemos que tener esperanza, tenemos que tener ánimo y tenemos que alegrarnos que la palabra de Dios es real, que las promesas que Dios dejó en su palabra son efectivas."
+
+--------------------------------------------------------------------------------
+
+#11 - PUNTUACIÓN: 7 - TIEMPO: 00:03:18 a 00:03:29 - DURACIÓN: 10.74s
+TEXTO: "1 de los fundamentos que le habló a ellos fue la enseñanza de la venida del Señor Jesucristo y el arrebatamiento de la iglesia para que ellos tuvieran esperanza."
+
+--------------------------------------------------------------------------------
+
+#12 - PUNTUACIÓN: 7 - TIEMPO: 00:08:24 a 00:08:35 - DURACIÓN: 10.81s
+TEXTO: "¿Compartíamos semanas atrás este mensaje que nos dice que debemos entrar por la puerta estrecha y caminar por el camino angosto, cierto?"
+
+--------------------------------------------------------------------------------
+
+#13 - PUNTUACIÓN: 7 - TIEMPO: 00:11:13 a 00:11:35 - DURACIÓN: 21.16s
+TEXTO: "¿Hermanos, la gente no está creyendo en nada porque producto de líderes aprovechadores, pastores sinvergüenzas, curas que han abusado de niños, porque Dios no dijo que el ministro del Señor tenía que ser soltero, no dijo eso?"
+
+--------------------------------------------------------------------------------
+
+#14 - PUNTUACIÓN: 7 - TIEMPO: 00:12:08 a 00:12:14 - DURACIÓN: 6.62s
+TEXTO: "Por lo tanto, tenemos que mantener la esperanza en que está cerca la venida del Señor."
+
+--------------------------------------------------------------------------------
+
+#15 - PUNTUACIÓN: 7 - TIEMPO: 00:14:42 a 00:14:54 - DURACIÓN: 11.72s
+TEXTO: "El problema es que nosotros no vivimos para Cristo y ese es nuestro problema principal y por eso perdemos la esperanza, porque cuál es mi esperanza?"
+
+--------------------------------------------------------------------------------
+
+#16 - PUNTUACIÓN: 7 - TIEMPO: 00:14:54 a 00:15:11 - DURACIÓN: 17.34s
+TEXTO: "¿Hacer más grande mi casa, tener un mejor trabajo, ver a mis hijos educados, con títulos universitarios, en buenos trabajos, todo eso puede ser bueno, pero dónde está el deseo de querer ser un verdadero discípulo de Cristo?"
+
+--------------------------------------------------------------------------------
+
+#17 - PUNTUACIÓN: 7 - TIEMPO: 00:19:18 a 00:19:30 - DURACIÓN: 11.19s
+TEXTO: "¿Y lo primero que ocurre es que los espíritus de los cristianos que vienen con Cristo desde el paraíso celestial donde están ahora, no es cierto?"
+
+--------------------------------------------------------------------------------
+
+#18 - PUNTUACIÓN: 7 - TIEMPO: 00:21:31 a 00:21:41 - DURACIÓN: 9.30s
+TEXTO: "¿Va a ser un cuerpo que no se va a enfermar, va a ser un cuerpo que va a poder traspasar paredes, va a ser un cuerpo que va a poder comer, porque Jesús comió después de resucitado, cierto?"
+
+--------------------------------------------------------------------------------
+
+#19 - PUNTUACIÓN: 7 - TIEMPO: 00:25:33 a 00:25:48 - DURACIÓN: 15.10s
+TEXTO: "Pero lo importante es esto, mire cómo termina el por tanto, animaos, alentaos los unos a los otros con estas palabras, iglesia del Señor."
+
+--------------------------------------------------------------------------------
+
+#20 - PUNTUACIÓN: 7 - TIEMPO: 00:25:50 a 00:26:00 - DURACIÓN: 9.90s
+TEXTO: "Los que estamos esperando a Cristo nos alentamos con la promesa de la esperanza de la segunda venida de Cristo en poder y gloria."
+
+--------------------------------------------------------------------------------
+
+#21 - PUNTUACIÓN: 7 - TIEMPO: 00:28:05 a 00:28:10 - DURACIÓN: 4.97s
+TEXTO: "¿Qué tremendo, no? Así que yo tengo esperanza de que el Señor va a venir."
+
+--------------------------------------------------------------------------------
+
+#22 - PUNTUACIÓN: 6 - TIEMPO: 00:00:36 a 00:00:46 - DURACIÓN: 9.98s
+TEXTO: "Ese es el título del mensaje. Vamos a ir a primera de Tesalonicenses, capítulo cuatro, versículo 13, un pasaje tremendamente conocido de la palabra del Señor."
+
+--------------------------------------------------------------------------------
+
+#23 - PUNTUACIÓN: 6 - TIEMPO: 00:00:49 a 00:01:04 - DURACIÓN: 14.18s
+TEXTO: "Y esto es lo que el Señor me dio. Dice así primera de Tesalonicenses cuatro y 13 tampoco queremos, hermanos, que ignoréis acerca de los que duermen, para que no os entristezcáis como los otros que no tienen esperanza."
+
+--------------------------------------------------------------------------------
+
+#24 - PUNTUACIÓN: 6 - TIEMPO: 00:01:24 a 00:01:33 - DURACIÓN: 9.06s
+TEXTO: "Porque el Señor mismo con voz de mando, con voz de arcángel y con trompeta de Dios, descenderá del cielo y los muertos en Cristo resucitarán primero."
+
+--------------------------------------------------------------------------------
+
+#25 - PUNTUACIÓN: 6 - TIEMPO: 00:01:46 a 00:01:54 - DURACIÓN: 8.89s
+TEXTO: "Vamos a orar. Padre de la gloria, en el nombre de Jesús entregamos a ti, oh Dios, el mensaje de hoy."
+
+--------------------------------------------------------------------------------
+
+#26 - PUNTUACIÓN: 6 - TIEMPO: 00:02:06 a 00:02:13 - DURACIÓN: 6.76s
+TEXTO: "Señor, ayúdanos a vivir con esperanza, con esperanza en la venida de nuestro Señor Jesucristo."
+
+--------------------------------------------------------------------------------
+
+#27 - PUNTUACIÓN: 6 - TIEMPO: 00:07:25 a 00:07:35 - DURACIÓN: 9.70s
+TEXTO: "¿Pero está difícil vivir o no? ¿Y yo no sé si a usted le pasa, a mí me pasa, a veces pierdo la esperanza, sinceramente a veces perdemos la esperanza, o no?"
+
+--------------------------------------------------------------------------------
+
+#28 - PUNTUACIÓN: 6 - TIEMPO: 00:08:43 a 00:08:50 - DURACIÓN: 7.12s
+TEXTO: "¿Por qué no me arrepentí antes? ¿Y otros van a te odio Dios apretando los dientes así, se acuerda?"
+
+--------------------------------------------------------------------------------
+
+#29 - PUNTUACIÓN: 6 - TIEMPO: 00:11:49 a 00:12:00 - DURACIÓN: 11.51s
+TEXTO: "¿Cada cierto tiempo un cura sale acusado de algo o no me da pena, no me estoy gozando en esto, porque en Chile la mayoría de la gente que llega a ser cristiana viene de la iglesia católica, cierto?"
+
+--------------------------------------------------------------------------------
+
+#30 - PUNTUACIÓN: 6 - TIEMPO: 00:12:41 a 00:12:58 - DURACIÓN: 16.55s
+TEXTO: "Un día Jesús va a cumplir su promesa, los que murieron van a venir con Jesús a buscar a los que estén vivos para irnos a la casa del Señor."
+
+--------------------------------------------------------------------------------
+
+#31 - PUNTUACIÓN: 6 - TIEMPO: 00:12:58 a 00:13:12 - DURACIÓN: 13.90s
+TEXTO: "Es una promesa tremenda. Por lo cual os decimos esto en palabras del Señ que nosotros que vivimos, que habremos quedado hasta la venida del Señor, no precederemos a los que durmieron."
+
+--------------------------------------------------------------------------------
+
+#32 - PUNTUACIÓN: 6 - TIEMPO: 00:15:12 a 00:15:22 - DURACIÓN: 10.30s
+TEXTO: "¿Dónde está el deseo de poder ser una mujer, un hombre de Dios, que Dios te mire y se agrade contigo?"
+
+--------------------------------------------------------------------------------
+
+#33 - PUNTUACIÓN: 6 - TIEMPO: 00:16:29 a 00:16:42 - DURACIÓN: 12.43s
+TEXTO: "Tremendo. Entonces, para vivir con esperanza y con esperanza en la venida del Señor, yo tengo que vivir una vida de integridad, dándole a Dios lo que Dios me pide."
+
+--------------------------------------------------------------------------------
+
+#34 - PUNTUACIÓN: 6 - TIEMPO: 00:16:42 a 00:16:54 - DURACIÓN: 11.75s
+TEXTO: "¿Si Dios no está en contra de que tengas una mejor casa o un auto nuevo, Dios no está en contra de eso, Dios quiere que todo lo que tengas lo pongas al servicio de él, cierto?"
+
+--------------------------------------------------------------------------------
+
+#35 - PUNTUACIÓN: 6 - TIEMPO: 00:20:16 a 00:20:32 - DURACIÓN: 16.00s
+TEXTO: "Por lo tanto, el Señor le va a dar a los muertos en Cristo un cuerpo nuevo, porque fíjese esto, Dios nos creó para que fuéramos sus hijos y habitáramos una tierra que era edénica, como el jardín del Edén."
+
+--------------------------------------------------------------------------------
+
+#36 - PUNTUACIÓN: 6 - TIEMPO: 00:21:08 a 00:21:19 - DURACIÓN: 11.42s
+TEXTO: "Entonces, se imagina usted si estamos vivos y viene el Señor y somos transformados, ya no vamos a sentir más el pecado, porque esa cosa es el gran efecto."
+
+--------------------------------------------------------------------------------
+
+#37 - PUNTUACIÓN: 6 - TIEMPO: 00:21:19 a 00:21:31 - DURACIÓN: 11.34s
+TEXTO: "¿A mí no me preocupa mucho la parte física del cuerpo glorificado que el Señor me va a dar, lo que me interesa es ser libre del pecado, cierto?"
+
+--------------------------------------------------------------------------------
+
+#38 - PUNTUACIÓN: 6 - TIEMPO: 00:21:47 a 00:22:09 - DURACIÓN: 21.18s
+TEXTO: "¿Ríase, ríase hermano, diga amén, cierto? ¿Yo no voy a sentir esos dolores raros, no voy a tener problemas de sobrepeso, cierto?"
+
+--------------------------------------------------------------------------------
+
+#39 - PUNTUACIÓN: 6 - TIEMPO: 00:22:14 a 00:22:22 - DURACIÓN: 7.88s
+TEXTO: "Porque el señor mismo con voz de mando, con voz de arcángel y con trompeta de Dios descenderá del cielo y los muertos en Cristo resucitarán primero."
+
+--------------------------------------------------------------------------------
+
+#40 - PUNTUACIÓN: 6 - TIEMPO: 00:24:08 a 00:24:35 - DURACIÓN: 27.07s
+TEXTO: "Se van a abrir las nubes, Cristo va a descender, la iglesia va a ser transformada, el reino de Dios se va a establecer, va a haber un juicio, así dice la Biblia, unos van a ir al reino de Dios y otros van a ir a la condenación eterna y va a comenzar el estado eterno que se llama, en donde vamos a estar siempre delante de la presencia del Señor, como dice la Biblia, en cielos nuevos y tierra nueva."
+
+--------------------------------------------------------------------------------
+
+#41 - PUNTUACIÓN: 6 - TIEMPO: 00:29:12 a 00:29:18 - DURACIÓN: 5.58s
+TEXTO: "Bendito sea el nombre del Señor. ¿Usted cree que Jesús va a volver?"
+
+--------------------------------------------------------------------------------
+
+#42 - PUNTUACIÓN: 6 - TIEMPO: 00:33:21 a 00:33:50 - DURACIÓN: 28.58s
+TEXTO: "¿Pero sabe? Oré, oré, yo creo que fueron más de 20 años, 25 años y finalmente el último día que lo vi vivo, lo vi en nuestro templo allá en Valparaíso, estaba en la última fila y Dios lo tocó, levantó sus brazos al cielo, lo vi llorando y yo creo que Dios hizo una obra en él, porque él era respetuoso, se había congregado en su juventud pero no había seguido a Cristo."
+
+--------------------------------------------------------------------------------
+
+#43 - PUNTUACIÓN: 5 - TIEMPO: 00:00:01 a 00:00:09 - DURACIÓN: 8.87s
+TEXTO: "¿El Señor nos ayude, cierto? ¿Cierto? Así que Dios nos ayude."
+
+--------------------------------------------------------------------------------
+
+#44 - PUNTUACIÓN: 5 - TIEMPO: 00:00:23 a 00:00:35 - DURACIÓN: 12.23s
+TEXTO: "Viviendo con esperanza, viviendo con esperanza en la venida del Señor, viviendo con esperanza, pero viviendo con esperanza en la venida del Señor."
+
+--------------------------------------------------------------------------------
+
+#45 - PUNTUACIÓN: 5 - TIEMPO: 00:01:04 a 00:01:12 - DURACIÓN: 7.54s
+TEXTO: "Porque si creemos que Jesús murió y resucitó, así también traerá Dios con Jesús a los que durmieron en él."
+
+--------------------------------------------------------------------------------
+
+#46 - PUNTUACIÓN: 5 - TIEMPO: 00:01:12 a 00:01:24 - DURACIÓN: 11.93s
+TEXTO: "Por lo cual os decimos esto en palabra del Señor que nosotros que vivimos, que habremos quedado hasta la venida del Señor, no precederemos a los que durmieron."
+
+--------------------------------------------------------------------------------
+
+#47 - PUNTUACIÓN: 5 - TIEMPO: 00:01:55 a 00:02:06 - DURACIÓN: 11.63s
+TEXTO: "Hemos hecho un recuento de tu enseñanza de la semana pasada y hoy, padre de la gloria, venimos delante de tu presencia, señor, para entregar este mensaje."
+
+--------------------------------------------------------------------------------
+
+#48 - PUNTUACIÓN: 5 - TIEMPO: 00:04:25 a 00:04:36 - DURACIÓN: 10.56s
+TEXTO: "Habían ciudades en donde a los cristianos no se les daba trabajo por venir a ser creyentes, porque no adoraban a las deidades locales, porque decían que Jesús es el Señor."
+
+--------------------------------------------------------------------------------
+
+#49 - PUNTUACIÓN: 5 - TIEMPO: 00:05:06 a 00:05:16 - DURACIÓN: 9.24s
+TEXTO: "a usted también le pasa que de presencia usted le cae mal a alguien y viceversa, no me diga que no, cierto?"
+
+--------------------------------------------------------------------------------
+
+#50 - PUNTUACIÓN: 5 - TIEMPO: 00:05:57 a 00:06:21 - DURACIÓN: 23.48s
+TEXTO: "qué va a ocurrir? Nos vamos a reencontrar. Y en ese espíritu Pablo les manda esta carta, las cartas de primera y segunda de Tesalonicenses que se convierten en tratados de profecía bíblica, de escatología, se convierten en tratados de ánimo y son los libros más proféticos o escatológicos de Pablo en el nuevo Testamento."
+
+--------------------------------------------------------------------------------
+
+#51 - PUNTUACIÓN: 5 - TIEMPO: 00:08:13 a 00:08:24 - DURACIÓN: 11.34s
+TEXTO: "Nos va a dar salvación eterna. Quiero que considere esto, usted ni se imagina, yo tampoco, lo monstruoso que es la condenación y el infierno."
+
+--------------------------------------------------------------------------------
+
+#52 - PUNTUACIÓN: 5 - TIEMPO: 00:08:36 a 00:08:43 - DURACIÓN: 7.03s
+TEXTO: "¿Porque la perdición, hermanos, va a ser tremendo, ahí va a ser el lloro y el crujir de dientes, por qué no me arrepentí antes?"
+
+--------------------------------------------------------------------------------
+
+#53 - PUNTUACIÓN: 5 - TIEMPO: 00:10:06 a 00:10:14 - DURACIÓN: 8.62s
+TEXTO: "Recientemente falleció el hermano Charles Stanley de contacto in touch en inglés, un hombre que enseñaba la palabra del Señor."
+
+--------------------------------------------------------------------------------
+
+#54 - PUNTUACIÓN: 5 - TIEMPO: 00:11:01 a 00:11:09 - DURACIÓN: 7.55s
+TEXTO: "¿Había uno que con prudencia no soy religioso y detesto y odio las religiones, pero saben qué?"
+
+--------------------------------------------------------------------------------
+
+#55 - PUNTUACIÓN: 5 - TIEMPO: 00:11:35 a 00:11:43 - DURACIÓN: 8.32s
+TEXTO: "O célibe. ¿Cómo usted va a enseñar y va a guiar una congregación si usted nunca tuvo un hijo o no sabe lo que es la lucha de la vida?"
+
+--------------------------------------------------------------------------------
+
+#56 - PUNTUACIÓN: 5 - TIEMPO: 00:12:23 a 00:12:37 - DURACIÓN: 14.28s
+TEXTO: "Mire como dice después el siguiente versículo porque si creemos que Jesús murió y resucitó, así también traerá Dios con Jesús a los que durmieron en él."
+
+--------------------------------------------------------------------------------
+
+#57 - PUNTUACIÓN: 5 - TIEMPO: 00:14:19 a 00:14:33 - DURACIÓN: 13.82s
+TEXTO: "Entonces, mientras vivo en este mundo tengo que vivir con sabiduría y eso es lo que nos hablaba el Señor la semana pasada, tengo que vivir para Cristo."
+
+--------------------------------------------------------------------------------
+
+#58 - PUNTUACIÓN: 5 - TIEMPO: 00:15:23 a 00:15:31 - DURACIÓN: 8.06s
+TEXTO: "¿O Dios te mira y tiene que decir Señor nos ayude, cierto?"
+
+--------------------------------------------------------------------------------
+
+#59 - PUNTUACIÓN: 5 - TIEMPO: 00:16:54 a 00:17:13 - DURACIÓN: 19.20s
+TEXTO: "Entonces Cristo va a cumplir su promesa. Por lo cual os decimos esto en palabra del Señor, que nosotros que vivimos, que habremos quedado hasta la venida del Señor, no precederemos a los que durmieron, es decir, no nos quedaremos atrás, porque el Señor mismo con voz de mando, con voz de arcángel y con trompeta de Dios descenderá del cielo."
+
+--------------------------------------------------------------------------------
+
+#60 - PUNTUACIÓN: 5 - TIEMPO: 00:17:42 a 00:17:50 - DURACIÓN: 7.90s
+TEXTO: "Así estaremos siempre con el Señor. Hay una esperanza Iglesia, hay una esperanza efectiva."
+
+--------------------------------------------------------------------------------
+
+#61 - PUNTUACIÓN: 5 - TIEMPO: 00:18:12 a 00:18:23 - DURACIÓN: 10.66s
+TEXTO: "Cristo se para de su trono, los ángeles celestiales se forman y Cristo le da la orden a los arcángeles y le dice ha llegado la hora de que vayamos por mi iglesia."
+
+--------------------------------------------------------------------------------
+
+#62 - PUNTUACIÓN: 5 - TIEMPO: 00:18:23 a 00:18:51 - DURACIÓN: 28.01s
+TEXTO: "Y él comienza a descender, escuche bien, comienza a descender y mientras él viene descendiendo, dice la Biblia que suena la trompeta de Dios, no es la trompeta de ángeles, dice ahí, con trompeta de Dios y con voz de mando se escucha algo como podemos imaginar y lo vamos a escuchar iglesia mía, vengan acá, es la hora de que vengan conmigo."
+
+--------------------------------------------------------------------------------
+
+#63 - PUNTUACIÓN: 5 - TIEMPO: 00:19:55 a 00:20:07 - DURACIÓN: 12.35s
+TEXTO: "¿Mire que tremenda cosa, no? A veces decimos cosas con nuestra boquita, tendría que meter mi mano en su costado para creer que resucitó y cayó de rodillas."
+
+--------------------------------------------------------------------------------
+
+#64 - PUNTUACIÓN: 5 - TIEMPO: 00:23:06 a 00:23:14 - DURACIÓN: 7.50s
+TEXTO: "Esto es bíblico, esto va a ocurrir, esta no es una invención, está escrito en la Biblia, no es la idea de un hombre, la palabra existe."
+
+--------------------------------------------------------------------------------
+
+#65 - PUNTUACIÓN: 5 - TIEMPO: 00:25:25 a 00:25:31 - DURACIÓN: 5.98s
+TEXTO: "¿Porque si no Eva se hubiera asustado, no? ¿Cierto? No fue la primera vez que había hablado con un animal."
+
+--------------------------------------------------------------------------------
+
+#66 - PUNTUACIÓN: 5 - TIEMPO: 00:26:08 a 00:26:15 - DURACIÓN: 6.80s
+TEXTO: "¿En la casa de mi Padre muchas moradas hay, si así no fuera yo les hubiera contado, para qué les voy a decir una cosa que no es real?"
+
+--------------------------------------------------------------------------------
+
+#67 - PUNTUACIÓN: 5 - TIEMPO: 00:26:39 a 00:26:45 - DURACIÓN: 5.90s
+TEXTO: "Cualquier cosa que sea en el cielo sirve. ¿Por qué vamos a estar delante del Padre?"
+
+--------------------------------------------------------------------------------
+
+#68 - PUNTUACIÓN: 5 - TIEMPO: 00:26:46 a 00:26:53 - DURACIÓN: 6.62s
+TEXTO: "Y la Biblia dice que no va a haber necesidad de la luz del sol, porque el fulgor de Dios va a iluminar todas las cosas."
+
+--------------------------------------------------------------------------------
+
+#69 - PUNTUACIÓN: 5 - TIEMPO: 00:27:56 a 00:28:03 - DURACIÓN: 7.10s
+TEXTO: "Dice la Biblia en Colosenses capítulo un que Cristo es preeminente en la creación, él es el que sustenta todas las cosas."
+
+--------------------------------------------------------------------------------
+
+#70 - PUNTUACIÓN: 5 - TIEMPO: 00:28:32 a 00:29:03 - DURACIÓN: 30.50s
+TEXTO: "Yo no sé qué problema tú tienes, pero la venida del Señor me da la suficiente paz, suficiente paz para creer que Dios me va a cuidar, para creer que yo le importo a Dios, para creer que él tiene un plan para mi vida, para creer que nada me va a separar del amor de Dios, para entender que las promesas que están en su palabra son"
+
+--------------------------------------------------------------------------------
+
+#71 - PUNTUACIÓN: 5 - TIEMPO: 00:30:13 a 00:30:18 - DURACIÓN: 5.41s
+TEXTO: "¿Pero la muerte no respeta la edad, se lleva gente de todas las edades, cierto?"
+
+--------------------------------------------------------------------------------
+
+#72 - PUNTUACIÓN: 5 - TIEMPO: 00:31:47 a 00:31:53 - DURACIÓN: 5.98s
+TEXTO: "¿Pero qué le quiero decir? No lo hacen por misericordia, lo hacen porque así ahorran dinero."
+
+--------------------------------------------------------------------------------
+
+#73 - PUNTUACIÓN: 4 - TIEMPO: 00:00:46 a 00:00:49 - DURACIÓN: 3.49s
+TEXTO: "¿Y sabe? ¿Yo le preguntaba al Señor qué mensaje para esta semana?"
+
+--------------------------------------------------------------------------------
+
+#74 - PUNTUACIÓN: 4 - TIEMPO: 00:01:33 a 00:01:45 - DURACIÓN: 11.90s
+TEXTO: "Luego nosotros los que vivimos, los que hayamos quedado, seremos arrebatados juntamente con ellos en las nubes para recibir al Señor en el aire, y así estaremos siempre con el Señor."
+
+--------------------------------------------------------------------------------
+
+#75 - PUNTUACIÓN: 4 - TIEMPO: 00:02:35 a 00:02:45 - DURACIÓN: 10.73s
+TEXTO: "Pablo sale a hacer el trabajo misionero, a predicarle a los gentiles, el Señor lo llama al apostolado y él comienza a viajar y él tiene una forma de trabajo."
+
+--------------------------------------------------------------------------------
+
+#76 - PUNTUACIÓN: 4 - TIEMPO: 00:02:54 a 00:03:10 - DURACIÓN: 16.15s
+TEXTO: "En algunos lugares como en Éfeso se quedó un largo tiempo, pero en Tesalónica el apóstol estuvo poquito, se estima que estuvo de tres semanas a un mes, no más que eso, en su viaje misionero."
+
+--------------------------------------------------------------------------------
+
+#77 - PUNTUACIÓN: 4 - TIEMPO: 00:04:14 a 00:04:25 - DURACIÓN: 10.94s
+TEXTO: "Entonces los hermanos sufrían hermanos, los hermanos de la iglesia primitiva sufrían por ser cristianos, eran perseguidos, eran vituperados, eran despedidos de sus trabajos."
+
+--------------------------------------------------------------------------------
+
+#78 - PUNTUACIÓN: 4 - TIEMPO: 00:06:21 a 00:06:41 - DURACIÓN: 20.56s
+TEXTO: "Primera y segunda de Tesalonicenses con el capítulo 15 de primera de Corintios, Pablo habla de la venida del Señor, del arrebatamiento del futuro, así que les tampoco queremos, hermanos, que ignoréis acerca de los que duermen, para que no os entristezcáis como los otros que no tienen esperanza."
+
+--------------------------------------------------------------------------------
+
+#79 - PUNTUACIÓN: 4 - TIEMPO: 00:07:44 a 00:07:53 - DURACIÓN: 9.50s
+TEXTO: "Y a veces tenemos deseos y sueños y nuestros deseos y sueños no se cumplen y comenzamos a perder la esperanza."
+
+--------------------------------------------------------------------------------
+
+#80 - PUNTUACIÓN: 4 - TIEMPO: 00:10:19 a 00:10:37 - DURACIÓN: 17.74s
+TEXTO: "Y anoche venía un vehículo station wagon con siete personas y vuelca y el diario dice Venían de un culto evangélico, cinco mueren, el chofer se salva ileso y el papá del chofer queda grave."
+
+--------------------------------------------------------------------------------
+
+#81 - PUNTUACIÓN: 4 - TIEMPO: 00:10:39 a 00:10:48 - DURACIÓN: 9.85s
+TEXTO: "Y los comentarios de la gente eran monstruosos en el diario ahí está el Dios que no los salvó, qué bueno que se murieron."
+
+--------------------------------------------------------------------------------
+
+#82 - PUNTUACIÓN: 4 - TIEMPO: 00:10:48 a 00:11:01 - DURACIÓN: 12.69s
+TEXTO: "Textual, para que vean que Dios no existe. Y así porque la gente está malvada, porque por último, usted puede no creer en Dios."
+
+--------------------------------------------------------------------------------
+
+#83 - PUNTUACIÓN: 4 - TIEMPO: 00:13:18 a 00:13:32 - DURACIÓN: 13.54s
+TEXTO: "Y algunos dicen no, si Cristo ya no vuelve. Pero el mundo está en un caos, hermanos, el mundo está en un caos, las cosas han empeorado."
+
+--------------------------------------------------------------------------------
+
+#84 - PUNTUACIÓN: 4 - TIEMPO: 00:14:01 a 00:14:06 - DURACIÓN: 5.02s
+TEXTO: "¿Dios no es hombre para que mienta, ni hijo de hombre, no es cierto?"
+
+--------------------------------------------------------------------------------
+
+#85 - PUNTUACIÓN: 4 - TIEMPO: 00:14:34 a 00:14:42 - DURACIÓN: 8.06s
+TEXTO: "¿El Señor no está en contra de que tú tomes un descanso o o hagas una diversión sana, etc."
+
+--------------------------------------------------------------------------------
+
+#86 - PUNTUACIÓN: 4 - TIEMPO: 00:15:37 a 00:15:44 - DURACIÓN: 7.09s
+TEXTO: "Te adora y le va bien porque le tienes dinero, le tienes casita, le tienes todo y Dios le dijo quítale todo."
+
+--------------------------------------------------------------------------------
+
+#87 - PUNTUACIÓN: 4 - TIEMPO: 00:16:10 a 00:16:29 - DURACIÓN: 19.61s
+TEXTO: "Pero él no lo blasfemó, creyó en Dios y Dios lo levantó de vuelta y dice la biblia que le puso siete veces más de todo, porque Dios no tiene problema en darte tus cosas materiales, Dios anda buscando hijos que de verdad le amen y que le obedezcan."
+
+--------------------------------------------------------------------------------
+
+#88 - PUNTUACIÓN: 4 - TIEMPO: 00:17:50 a 00:18:01 - DURACIÓN: 11.34s
+TEXTO: "Hay un momento en que suena la trompeta y en ese momento Cristo desciende del cielo."
+
+--------------------------------------------------------------------------------
+
+#89 - PUNTUACIÓN: 4 - TIEMPO: 00:22:22 a 00:22:35 - DURACIÓN: 12.66s
+TEXTO: "Luego nosotros los que vivimos, los que hayamos quedado, seremos arrebatados juntamente con ellos en las nubes para recibir al Señor en el aire y así estaremos siempre con el Señor."
+
+--------------------------------------------------------------------------------
+
+#90 - PUNTUACIÓN: 4 - TIEMPO: 00:22:36 a 00:23:06 - DURACIÓN: 29.68s
+TEXTO: "La palabra que la Biblia usa allí para la idea española de arrebato, arrebatamiento, es una palabra griega que suena más o menos así como harpazo, harpazo, jarpaso, y es una palabra que significa cuando usted toma algo con fuerza, como cuando usted se acerca y arranca una planta que está ahí, que es una mala hierba en su jardín y es algo rápido, instantáneo, el Señor nos toma con fuerza para sacarnos de este mundo."
+
+--------------------------------------------------------------------------------
+
+#91 - PUNTUACIÓN: 4 - TIEMPO: 00:23:15 a 00:23:34 - DURACIÓN: 19.46s
+TEXTO: "¿Qué pasa? Que hay discusiones acerca de cómo van a ser las cosas proféticas, algunos Mire, no se preocupen, no va a haber anticristo, no va a haber tribulación, no va a haber milenio, lo único que va a ocurrir es que el Señor va a aparecer en el cielo y nos va a tomar con él y nos vamos a ir los buenos al cielo y los malos al juicio final."
+
+--------------------------------------------------------------------------------
+
+#92 - PUNTUACIÓN: 4 - TIEMPO: 00:23:46 a 00:23:52 - DURACIÓN: 5.18s
+TEXTO: "Eso es lo que creemos y hemos dedicado nuestra vida a estudiar la Palabra en esa dirección."
+
+--------------------------------------------------------------------------------
+
+#93 - PUNTUACIÓN: 4 - TIEMPO: 00:23:55 a 00:24:00 - DURACIÓN: 5.24s
+TEXTO: "¿Mientras venga el Señor, por mí no me preocupa nada más, sí o no?"
+
+--------------------------------------------------------------------------------
+
+#94 - PUNTUACIÓN: 4 - TIEMPO: 00:24:04 a 00:24:08 - DURACIÓN: 3.77s
+TEXTO: "¿El Señor va a venir, es un hecho bíblico, cierto?"
+
+--------------------------------------------------------------------------------
+
+#95 - PUNTUACIÓN: 4 - TIEMPO: 00:24:35 a 00:24:40 - DURACIÓN: 4.91s
+TEXTO: "No sé si el Señor va a arreglar este planeta o va a colocar un planeta nuevo, no lo sé."
+
+--------------------------------------------------------------------------------
+
+#96 - PUNTUACIÓN: 4 - TIEMPO: 00:24:56 a 00:25:08 - DURACIÓN: 12.04s
+TEXTO: "Y cuando el Señor arregle y cree todas las cosas nuevas, imagínese usted vivir en un jardín maravilloso así, sentir el olor de las flores, poder comunicarse con los animales."
+
+--------------------------------------------------------------------------------
+
+#97 - PUNTUACIÓN: 4 - TIEMPO: 00:26:00 a 00:26:08 - DURACIÓN: 7.30s
+TEXTO: "Él dijo no se turbe vuestro corazón ni tenga miedo, creed en Dios así crean en mí."
+
+--------------------------------------------------------------------------------
+
+#98 - PUNTUACIÓN: 4 - TIEMPO: 00:28:20 a 00:28:32 - DURACIÓN: 12.05s
+TEXTO: "¿Qué tremendo, no? Es maravilloso esto. Por lo tanto, ten esperanza, ten consuelo, aliéntate."
+
+--------------------------------------------------------------------------------
+
+#99 - PUNTUACIÓN: 4 - TIEMPO: 00:29:03 a 00:29:11 - DURACIÓN: 7.98s
+TEXTO: "promesas vivas y eficaces, para creer que todo lo puedo en Cristo Jesús."
+
+--------------------------------------------------------------------------------
+
+#100 - PUNTUACIÓN: 4 - TIEMPO: 00:30:05 a 00:30:12 - DURACIÓN: 7.75s
+TEXTO: "¿Cierto? ¿O nos enfermamos, nos aparecen cosas en función de la edad, cierto?"
+
+--------------------------------------------------------------------------------
+
+#101 - PUNTUACIÓN: 4 - TIEMPO: 00:30:31 a 00:30:37 - DURACIÓN: 5.57s
+TEXTO: "Quiero creer que muy pronto Cristo viene por nosotros. ¿Sabe?"
+
+--------------------------------------------------------------------------------
+
+#102 - PUNTUACIÓN: 4 - TIEMPO: 00:32:18 a 00:32:29 - DURACIÓN: 11.02s
+TEXTO: "Mire, tal vez hay cosas que no se van a resolver mañana o en un mes o el próximo año, pero Dios no te va a fallar, Dios no te va a fallar."
+
+--------------------------------------------------------------------------------
+
+#103 - PUNTUACIÓN: 4 - TIEMPO: 00:32:30 a 00:32:39 - DURACIÓN: 9.11s
+TEXTO: "Yo oraba por la salvación de mi padre y oraba y habían formas, habían momentos en que no había ninguna posibilidad, estaba todo cerrado."
+
+--------------------------------------------------------------------------------
+
+#104 - PUNTUACIÓN: 4 - TIEMPO: 00:34:26 a 00:34:42 - DURACIÓN: 16.18s
+TEXTO: "para aquellos que aman a Dios de verdad. Si usted ama a Dios de verdad, Dios le va a abrir puertas, Dios le va a abrir el camino Dios va a preparar algo para usted Bendito sea el nombre del Señor Dios lo va a hacer."
+
+--------------------------------------------------------------------------------
+
+#105 - PUNTUACIÓN: 3 - TIEMPO: 00:00:09 a 00:00:21 - DURACIÓN: 11.60s
+TEXTO: "Vamos hoy día a tener un mensaje que se llama ponga atención si lo anota para que cuando le pregunten después usted no diga cri, cri, cri, cri."
+
+--------------------------------------------------------------------------------
+
+#106 - PUNTUACIÓN: 3 - TIEMPO: 00:02:46 a 00:02:53 - DURACIÓN: 7.06s
+TEXTO: "Él va a un lugar y se queda un tiempo, un mes, dos meses, tres meses o más."
+
+--------------------------------------------------------------------------------
+
+#107 - PUNTUACIÓN: 3 - TIEMPO: 00:03:59 a 00:04:13 - DURACIÓN: 13.80s
+TEXTO: "crucificaban o le cortaban la cabeza. El derecho romano fue tan fuerte que hasta hoy día, hasta hace pocos años atrás creo, se estudiaba en las universidades para los que iban a ser abogados, porque dejó precedentes."
+
+--------------------------------------------------------------------------------
+
+#108 - PUNTUACIÓN: 3 - TIEMPO: 00:05:16 a 00:05:27 - DURACIÓN: 10.50s
+TEXTO: "Entonces, después de un tiempo llegan los enemigos de Pablo a esa ciudad y comienzan a meter ideas equivocadas."
+
+--------------------------------------------------------------------------------
+
+#109 - PUNTUACIÓN: 3 - TIEMPO: 00:06:44 a 00:07:14 - DURACIÓN: 30.00s
+TEXTO: "El Señor no quiere que ignoremos la profecía bíblica, el Señor no quiere que vivamos sin esperanza y no quiere que vivamos en tristeza, está complicada la vida, está complicada la sociedad, está complicado el país, está complicada la economía, no está complicada al nivel que vivió la iglesia primitiva que a ellos los tomaban y los echaban a los leones, o el malvado Nerón los atrapaba en Roma y los colgaba en palos gigantes, los embetunaba en aceite y"
+
+--------------------------------------------------------------------------------
+
+#110 - PUNTUACIÓN: 3 - TIEMPO: 00:07:14 a 00:07:20 - DURACIÓN: 5.78s
+TEXTO: "los quemaba vivos para iluminar sus patios y él se paseaba entre medio tocando el arpa."
+
+--------------------------------------------------------------------------------
+
+#111 - PUNTUACIÓN: 3 - TIEMPO: 00:07:35 a 00:07:43 - DURACIÓN: 7.90s
+TEXTO: "No vemos salida, no vemos ninguna situación en la cual hay una puerta que se abra para nosotros."
+
+--------------------------------------------------------------------------------
+
+#112 - PUNTUACIÓN: 3 - TIEMPO: 00:09:44 a 00:10:04 - DURACIÓN: 20.24s
+TEXTO: "un camión gigante que toma la vida de ellos y queda un gran dolor, 1 gran desastre, dos mujeres quedan viudas instantáneamente y el padre y el hijo pasan la eternidad y causó un impacto gigante porque era un buen siervo del Señor, cierto?"
+
+--------------------------------------------------------------------------------
+
+#113 - PUNTUACIÓN: 3 - TIEMPO: 00:10:15 a 00:10:19 - DURACIÓN: 3.46s
+TEXTO: "¿Sentimos la pérdida de los siervos, cierto? Pero es parte de la vida."
+
+--------------------------------------------------------------------------------
+
+#114 - PUNTUACIÓN: 3 - TIEMPO: 00:11:43 a 00:11:48 - DURACIÓN: 5.34s
+TEXTO: "¿Es una utopía, no es cierto? Y producto de eso cayeron en estos enredos."
+
+--------------------------------------------------------------------------------
+
+#115 - PUNTUACIÓN: 3 - TIEMPO: 00:13:35 a 00:13:49 - DURACIÓN: 13.50s
+TEXTO: "No sabemos qué va a pasar con EE.UU. no sabemos cuánto tiempo China va a ser el líder mundial, no sabemos a dónde va a ir la Unión Europea, no sabemos qué va a pasar con las economías."
+
+--------------------------------------------------------------------------------
+
+#116 - PUNTUACIÓN: 3 - TIEMPO: 00:14:07 a 00:14:18 - DURACIÓN: 10.71s
+TEXTO: "Para que no cumpla. Él dijo y no hará, él habló y no cierto número, números capítulo 23, ese versículo."
+
+--------------------------------------------------------------------------------
+
+#117 - PUNTUACIÓN: 3 - TIEMPO: 00:15:33 a 00:15:37 - DURACIÓN: 3.35s
+TEXTO: "¿El diablo vino a acusar a Job y le mira, has visto a Job?"
+
+--------------------------------------------------------------------------------
+
+#118 - PUNTUACIÓN: 3 - TIEMPO: 00:15:44 a 00:15:52 - DURACIÓN: 8.27s
+TEXTO: "Veamos, veamos quién es quién aquí, porque llega la hora de saber un día en tu vida cristiana qué tan cristiano eres."
+
+--------------------------------------------------------------------------------
+
+#119 - PUNTUACIÓN: 3 - TIEMPO: 00:16:00 a 00:16:08 - DURACIÓN: 7.82s
+TEXTO: "Hermano, el hombre llegó a tener el pobre Job una plaga tremenda en su cuerpo que se rascaba con una piedra, tremendo."
+
+--------------------------------------------------------------------------------
+
+#120 - PUNTUACIÓN: 3 - TIEMPO: 00:17:13 a 00:17:42 - DURACIÓN: 28.51s
+TEXTO: "Los muertos en Cristo resucitarán primero. Mire fuerte, lo voy a volver a leer porque el Señor mismo, Cristo mismo con voz de mando, con voz de arcángel y con trompeta de Dios descenderá del cielo y los muertos en Cristo resucitarán primero y luego nosotros los que vivimos, los que hayamos quedado, seremos arrebatados juntamente con ellos en las nubes para recibir al Señor en el aire."
+
+--------------------------------------------------------------------------------
+
+#121 - PUNTUACIÓN: 3 - TIEMPO: 00:18:01 a 00:18:08 - DURACIÓN: 7.14s
+TEXTO: "Los teólogos que han estudiado este pasaje dicen que hay más de 12 a 16 cosas que van pasando simultáneamente."
+
+--------------------------------------------------------------------------------
+
+#122 - PUNTUACIÓN: 3 - TIEMPO: 00:18:55 a 00:19:18 - DURACIÓN: 22.96s
+TEXTO: "Y mientras el Señor viene bajando, él viene gritando, viene rompiendo la atmósfera y el segundo cielo donde están los demonios y por eso no se sabe cuándo va a ser, porque si se supiera el diablo trataría de impedir como lo hizo con el profeta Daniel en Daniel capítulo nueve, de que bajara la revelación y el señor viene bajando rajando el cielo, el segundo cielo iglesia mía, vengan acá."
+
+--------------------------------------------------------------------------------
+
+#123 - PUNTUACIÓN: 3 - TIEMPO: 00:21:41 a 00:21:46 - DURACIÓN: 5.19s
+TEXTO: "Ya no voy a tener que lavarme los dientes y todos estos dientes plásticos que tengo se irán."
+
+--------------------------------------------------------------------------------
+
+#124 - PUNTUACIÓN: 3 - TIEMPO: 00:23:52 a 00:23:55 - DURACIÓN: 2.58s
+TEXTO: "Si al Señor le place hacerlo de otra manera, amén."
+
+--------------------------------------------------------------------------------
+
+#125 - PUNTUACIÓN: 3 - TIEMPO: 00:24:40 a 00:24:48 - DURACIÓN: 7.77s
+TEXTO: "Los científicos, la NASA, buscan desesperadamente planetas que se parezcan a la tierra, que tengan agua y todavía no encuentran ninguno."
+
+--------------------------------------------------------------------------------
+
+#126 - PUNTUACIÓN: 3 - TIEMPO: 00:24:49 a 00:24:54 - DURACIÓN: 4.88s
+TEXTO: "¿Tremendo, no? Y se gastan miles de millones de dólares."
+
+--------------------------------------------------------------------------------
+
+#127 - PUNTUACIÓN: 3 - TIEMPO: 00:25:08 a 00:25:24 - DURACIÓN: 15.43s
+TEXTO: "¿Se piensa que antes del pecado las personas podían incluso tener comunicación con los animales, por eso es que Eva no se asustó cuando la serpiente le habló, porque tenían un nivel de comunicación los animales tenían una comunicación básica, cierto?"
+
+--------------------------------------------------------------------------------
+
+#128 - PUNTUACIÓN: 3 - TIEMPO: 00:26:15 a 00:26:21 - DURACIÓN: 5.50s
+TEXTO: "Me voy adelante a prepararles un lugar para que donde yo estoy ustedes también estén."
+
+--------------------------------------------------------------------------------
+
+#129 - PUNTUACIÓN: 3 - TIEMPO: 00:27:34 a 00:27:55 - DURACIÓN: 21.30s
+TEXTO: "Así son los modelos matemáticos, pero ellos no cuentan con esto, que el creador de la materia es Dios, que el creador de la vida es Dios, que el que pone las leyes universales es Dios y que la energía finalmente no proviene de la combustión de la materia, proviene de Dios mismo."
+
+--------------------------------------------------------------------------------
+
+#130 - PUNTUACIÓN: 3 - TIEMPO: 00:28:11 a 00:28:17 - DURACIÓN: 6.12s
+TEXTO: "No sé si voy a estar vivo cuando él venga, pero no importa si me voy antes, me voy a ir proclamando su victoria."
+
+--------------------------------------------------------------------------------
+
+#131 - PUNTUACIÓN: 3 - TIEMPO: 00:30:38 a 00:30:49 - DURACIÓN: 10.86s
+TEXTO: "Estaba tan impactado con una noticia que decía que está habiendo movimiento en Naciones Unidas para incluso ya legalizar la situación de pedofilia."
+
+--------------------------------------------------------------------------------
+
+#132 - PUNTUACIÓN: 3 - TIEMPO: 00:32:39 a 00:32:49 - DURACIÓN: 9.12s
+TEXTO: "Cuando yo le quería predicar, él tenía muchos más argumentos que yo, porque él era un hombre que aunque era un maestro carpintero, era medianamente ubicado."
+
+--------------------------------------------------------------------------------
+
+#133 - PUNTUACIÓN: 3 - TIEMPO: 00:33:07 a 00:33:13 - DURACIÓN: 6.08s
+TEXTO: "Entonces él me envolvía en argumentos a mí y yo no tenía como más predicarle."
+
+--------------------------------------------------------------------------------
+
+#134 - PUNTUACIÓN: 3 - TIEMPO: 00:33:13 a 00:33:20 - DURACIÓN: 7.13s
+TEXTO: "Entonces él me decí Hijo, ya, pero está bien, si ya escuché lo que usted me dijo, tengamos un común denominador, tengamos un común denominador."
+
+--------------------------------------------------------------------------------
+
+#135 - PUNTUACIÓN: 3 - TIEMPO: 00:33:56 a 00:34:26 - DURACIÓN: 30.11s
+TEXTO: "El que cree recibe. Voy a decir una vez más para que nos quede, no pierdas la esperanza de lo que estás orando, pon tu esperanza en Dios, pon tu esperanza en Cristo y en su venida y vas a poder vivir en medio de este mundo, aunque la tierra tiemble y los montes se pasen a la mar y aunque los edificios se caigan completos, Dios estará contigo, Dios estará contigo porque hay esperanza"
+
+--------------------------------------------------------------------------------
+
+#136 - PUNTUACIÓN: 2 - TIEMPO: 00:03:10 a 00:03:13 - DURACIÓN: 3.02s
+TEXTO: "Y él levantó una iglesia y se sentó con ellos."
+
+--------------------------------------------------------------------------------
+
+#137 - PUNTUACIÓN: 2 - TIEMPO: 00:08:53 a 00:09:14 - DURACIÓN: 20.79s
+TEXTO: "En esta vida van a pasar cosas tremendas que nos pueden quitar la esperanza, aun siendo cristianos vamos a sufrir pérdidas, vamos a estar en situaciones de enfermedad, vamos a estar en situaciones de crisis financiera y aún en situaciones donde la muerte se va a llevar a alguien cercano a nosotros."
+
+--------------------------------------------------------------------------------
+
+#138 - PUNTUACIÓN: 2 - TIEMPO: 00:11:09 a 00:11:13 - DURACIÓN: 3.82s
+TEXTO: "Lo lamento por las familias de los fallecidos, espero que encuentren paz."
+
+--------------------------------------------------------------------------------
+
+#139 - PUNTUACIÓN: 2 - TIEMPO: 00:12:00 a 00:12:06 - DURACIÓN: 6.06s
+TEXTO: "Entonces los respeto, no tengo, no soy anti católico, soy pro Cristo."
+
+--------------------------------------------------------------------------------
+
+#140 - PUNTUACIÓN: 2 - TIEMPO: 00:13:13 a 00:13:16 - DURACIÓN: 3.46s
+TEXTO: "Cristo prometió que él iba a volver por segunda vez."
+
+--------------------------------------------------------------------------------
+
+#141 - PUNTUACIÓN: 2 - TIEMPO: 00:18:51 a 00:18:55 - DURACIÓN: 3.42s
+TEXTO: "Usted solamente lo va a escuchar, no lo van a escuchar los mundanos."
+
+--------------------------------------------------------------------------------
+
+#142 - PUNTUACIÓN: 2 - TIEMPO: 00:19:30 a 00:19:50 - DURACIÓN: 20.54s
+TEXTO: "Donde está nuestra hermana Sara Aguilera y otros que han partido, vienen bajando y resucitan, el cuerpo se levanta y reciben el nuevo cuerpo que Dios tiene para ellos, porque en la eternidad nos vamos a poder tocar, vamos a tener un cuerpo glorificado, no vamos a ser etéreos, vamos a ser igual que Cristo."
+
+--------------------------------------------------------------------------------
+
+#143 - PUNTUACIÓN: 2 - TIEMPO: 00:19:50 a 00:19:55 - DURACIÓN: 4.46s
+TEXTO: "Cristo le dijo a Tomás, tócame, porque Tomás dijo, tendría que."
+
+--------------------------------------------------------------------------------
+
+#144 - PUNTUACIÓN: 2 - TIEMPO: 00:26:22 a 00:26:38 - DURACIÓN: 16.42s
+TEXTO: "¿Así que en la casa del Padre celestial tenemos una morada, no sé cómo va a ser, no sé si va a ser una casita, una mansión o un departamentito, mire, cualquier cosa del cielo, aunque sea una casa chubi, sirve, cierto?"
+
+--------------------------------------------------------------------------------
+
+#145 - PUNTUACIÓN: 2 - TIEMPO: 00:26:54 a 00:27:16 - DURACIÓN: 22.47s
+TEXTO: "¿Tremendo, no? Los físicos, los científicos de la física, de las ciencias de la física, tienen un modelo matemático que dice que en muchos cientos de miles de millones de años más, el universo se va a apagar completo, se van a apagar los soles, las estrellas, todo así se va a ir apagando todo."
+
+--------------------------------------------------------------------------------
+
+#146 - PUNTUACIÓN: 2 - TIEMPO: 00:33:50 a 00:33:54 - DURACIÓN: 3.98s
+TEXTO: "Y te digo esto, no pierdas la esperanza de lo que estás orando."
+
+--------------------------------------------------------------------------------
+
+#147 - PUNTUACIÓN: 1 - TIEMPO: 00:03:13 a 00:03:18 - DURACIÓN: 4.70s
+TEXTO: "Ellos creyeron y les comenzó a hablar los fundamentos de la vida cristiana."
+
+--------------------------------------------------------------------------------
+
+#148 - PUNTUACIÓN: 1 - TIEMPO: 00:04:36 a 00:05:06 - DURACIÓN: 30.08s
+TEXTO: "¿Entonces la iglesia comienza a crecer, a avanzar y ocurre algo que siempre pasa, nosotros los pastores siempre tenemos enemigos, no me quiero comparar de manera ninguna con el apóstol Pablo, por favor, así que no vaya a malinterpretarme, pero siempre tenemos personas a las que no les caemos bien, como dijo alguien por ahí, no somos monedita de oro, siempre hay alguien que y usted sabe que es verdad, porque"
+
+--------------------------------------------------------------------------------
+
+#149 - PUNTUACIÓN: 1 - TIEMPO: 00:07:20 a 00:07:24 - DURACIÓN: 4.29s
+TEXTO: "Así era hermano, esto es real. No estamos en ese nivel."
+
+--------------------------------------------------------------------------------
+
+#150 - PUNTUACIÓN: 1 - TIEMPO: 00:09:14 a 00:09:44 - DURACIÓN: 30.10s
+TEXTO: "Dios tenga misericordia. ¿Una vez en Argentina un famoso y muy querido pastor iba viajando con su hijo en una carretera uniendo, no sé, Buenos Aires con otro pueblo, no lo sé el lugar exacto, y se les pincha un neumático, se revienta una rueda y se bajan a cambiar la rueda el papá con el hijo y por alguna razón no toman las precauciones del caso y pasan a"
+
+--------------------------------------------------------------------------------
+
+#151 - PUNTUACIÓN: 1 - TIEMPO: 00:15:53 a 00:15:59 - DURACIÓN: 6.03s
+TEXTO: "Veamos pues quién es quién, solo no le quites su vida."
+
+--------------------------------------------------------------------------------
+
+#152 - PUNTUACIÓN: 1 - TIEMPO: 00:18:09 a 00:18:12 - DURACIÓN: 2.94s
+TEXTO: "El Padre mira al Hijo y le Hijo ha llegado la hora."
+
+--------------------------------------------------------------------------------
+
+#153 - PUNTUACIÓN: 1 - TIEMPO: 00:20:32 a 00:20:36 - DURACIÓN: 3.41s
+TEXTO: "Y usted todo lo que ha visto acá es lo que el pecado hizo."
+
+--------------------------------------------------------------------------------
+
+#154 - PUNTUACIÓN: 1 - TIEMPO: 00:20:52 a 00:20:58 - DURACIÓN: 5.42s
+TEXTO: "Dice que al instante vamos a ser transformados, vamos a sentir la transformación."
+
+--------------------------------------------------------------------------------
+
+#155 - PUNTUACIÓN: 1 - TIEMPO: 00:29:20 a 00:29:45 - DURACIÓN: 24.90s
+TEXTO: "Mire, y aunque muramos, aunque crucemos por las puertas de la muerte, el Señor va a estar al otro lado esperándonos para darnos un abrazo y para decirte calma, ánimo, ya pasó, ya pasó, llegaste aquí, estás conmigo, nada te alcanzará, nadie te tocará, no habrá más pecado, entra el gozo de tu Señor."
+
+--------------------------------------------------------------------------------
+
+#156 - PUNTUACIÓN: 1 - TIEMPO: 00:31:22 a 00:31:47 - DURACIÓN: 24.30s
+TEXTO: "En Holanda se acaba de aprobar la eutanasia para niños menores de 12 años, cualquier niño menor de 12 años que esté en necesidad de una muerte química es legal, porque van a no hay niños con enfermedades terminales, según ellos son 10 niños en promedio al año que van a morir por esto."
+
+--------------------------------------------------------------------------------
+
+#157 - PUNTUACIÓN: 1 - TIEMPO: 00:32:49 a 00:33:07 - DURACIÓN: 17.82s
+TEXTO: "Me enteré que había ido incluso en su juventud a estudiar la carpintería a la Universidad Santa María con los profesores alemanes, a la escuela de Artes y Oficios y los profesores alemanes le habían enseñado a usar las herramientas, a cómo pulir con los cepillos y toda la cosa."
+
+--------------------------------------------------------------------------------
+
+#158 - PUNTUACIÓN: 0 - TIEMPO: 00:03:29 a 00:03:59 - DURACIÓN: 30.08s
+TEXTO: "Usted tiene que entender esto las iglesias cristianas primitivas del mundo, donde nace la iglesia originalmente, ahí en el Medio Oriente, en la puerta de Asia con Europa, en Turquía y todos esos lugares estaban bajo el control del imperio romano y los romanos aplicaban la ley a rajatabla, eran muy duros ellos, cualquiera que se salía del camino o lo"
+
+--------------------------------------------------------------------------------
+
+#159 - PUNTUACIÓN: 0 - TIEMPO: 00:05:27 a 00:05:57 - DURACIÓN: 30.20s
+TEXTO: "¿1 de las ideas que colocan allí es la idea de que como que el Señor ya vino y ellos se perdieron el arrebatamiento y la venida del Señor, y ellos comienzan a entrar en preocupación y en desesperación porque como había persecución y era difícil ser cristiano, algunos de los creyentes en Tesalónica estaban muriendo y los que quedaban vivos, los parientes, los familiares, estaban realmente preocupados por el destino de los que habían muerto y decían"
+
+--------------------------------------------------------------------------------
+
+#160 - PUNTUACIÓN: 0 - TIEMPO: 00:27:16 a 00:27:32 - DURACIÓN: 15.71s
+TEXTO: "Y cuando muera la última estrella que está dando luz en el universo, se va a ver el último destello de luz y todo va a quedar como una sopa oscura de materia sin forma y ahí va a terminar el universo."
+
+--------------------------------------------------------------------------------
+
+#161 - PUNTUACIÓN: 0 - TIEMPO: 00:30:51 a 00:31:21 - DURACIÓN: 30.71s
+TEXTO: "Entonces el mundo ha perdido toda la brújula moral y ya se aprobó una ley en un estado norteamericano y también en Canadá, en donde si un niño menor de edad quiere cambiar de sexo y sus padres se oponen, los padres quedan fuera de la situación, el estado les quita al hijo y los meten a unas casas de acogida para prepararlo para el cambio de sexo, no importa la edad que tenga."
+
+--------------------------------------------------------------------------------
+

@@ -1,0 +1,40 @@
+NARRATIVA PARA REEL: Reflexión y Desafío
+Archivo fuente: segments_sermon_recortado_transcription.json
+Fecha de creación: 26/04/2025 17:16:56
+Duración total: 57.85 segundos
+
+ESTRUCTURA NARRATIVA:
+1. Introducción Reflexiva
+2. Contraste
+3. Desafío
+4. Solución
+
+SECUENCIA DE SEGMENTOS:
+SEGMENTO 1 - TIEMPO: 00:07:54 a 00:08:12
+DURACIÓN: 18.19s - PUNTUACIÓN: 9
+TIPO: contraste, esperanza
+TEXTO: "¿Sin embargo, la gran verdad que te quiero compartir hoy día es que tenemos que tener la esperanza puesta en Dios y por ende en creer que un día nuestro Señor Jesucristo nos va a dar todo lo que le ha prometido que nos va a dar, sí o no?"
+
+SEGMENTO 2 - TIEMPO: 00:20:07 a 00:20:16
+DURACIÓN: 8.36s - PUNTUACIÓN: 8
+TIPO: pregunta_retórica, cierre_empoderador, solución, verdad_bíblica, esperanza
+TEXTO: "¿Señor mío y Dios mío, cierto? Y Jesús, bienaventurados los que no han visto y han creído."
+
+SEGMENTO 3 - TIEMPO: 00:21:08 a 00:21:19
+DURACIÓN: 11.42s - PUNTUACIÓN: 6
+TIPO: introducción_reflexiva
+TEXTO: "Entonces, se imagina usted si estamos vivos y viene el Señor y somos transformados, ya no vamos a sentir más el pecado, porque esa cosa es el gran efecto."
+
+SEGMENTO 4 - TIEMPO: 00:29:45 a 00:30:05
+DURACIÓN: 19.89s - PUNTUACIÓN: 13
+TIPO: esperanza
+TEXTO: "Gloria a Dios. Bendito sea el nombre del Señor. ¿Así que quiero decirte una vez más que pongas tu esperanza en Cristo y en la venida de Cristo, porque nuestras cosas a veces no funcionan como esperamos, no?"
+
+================================================================================
+
+INSTRUCCIONES DE USO:
+1. Esta narrativa está diseñada para crear un reel impactante de estilo 'trailer'
+2. Sigue la secuencia de segmentos en el orden indicado
+3. Utiliza el archivo de audio original para mantener la voz auténtica
+4. Cada segmento debe tener un estilo visual acorde a su tipo narrativo
+5. Mantén la coherencia visual y narrativa entre segmentos

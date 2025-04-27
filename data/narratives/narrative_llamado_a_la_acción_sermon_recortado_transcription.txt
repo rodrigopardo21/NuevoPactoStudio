@@ -1,0 +1,40 @@
+NARRATIVA PARA REEL: Llamado a la Acción
+Archivo fuente: segments_sermon_recortado_transcription.json
+Fecha de creación: 26/04/2025 17:16:56
+Duración total: 61.27 segundos
+
+ESTRUCTURA NARRATIVA:
+1. Pregunta Retórica
+2. Problema
+3. Llamado
+4. Cierre Empoderador
+
+SECUENCIA DE SEGMENTOS:
+SEGMENTO 1 - TIEMPO: 00:02:13 a 00:02:35
+DURACIÓN: 21.31s - PUNTUACIÓN: 8
+TIPO: pregunta_retórica, cierre_empoderador, solución, verdad_bíblica, esperanza
+TEXTO: "En el nombre de Jesús. Amén. ¿Sabe usted que primera de Tesalonicenses es prácticamente el primer libro que el apóstol Pablo escribió?"
+
+SEGMENTO 2 - TIEMPO: 00:14:42 a 00:14:54
+DURACIÓN: 11.72s - PUNTUACIÓN: 7
+TIPO: problema, esperanza
+TEXTO: "El problema es que nosotros no vivimos para Cristo y ese es nuestro problema principal y por eso perdemos la esperanza, porque cuál es mi esperanza?"
+
+SEGMENTO 3 - TIEMPO: 00:20:07 a 00:20:16
+DURACIÓN: 8.36s - PUNTUACIÓN: 8
+TIPO: pregunta_retórica, cierre_empoderador, solución, verdad_bíblica, esperanza
+TEXTO: "¿Señor mío y Dios mío, cierto? Y Jesús, bienaventurados los que no han visto y han creído."
+
+SEGMENTO 4 - TIEMPO: 00:29:45 a 00:30:05
+DURACIÓN: 19.89s - PUNTUACIÓN: 13
+TIPO: esperanza
+TEXTO: "Gloria a Dios. Bendito sea el nombre del Señor. ¿Así que quiero decirte una vez más que pongas tu esperanza en Cristo y en la venida de Cristo, porque nuestras cosas a veces no funcionan como esperamos, no?"
+
+================================================================================
+
+INSTRUCCIONES DE USO:
+1. Esta narrativa está diseñada para crear un reel impactante de estilo 'trailer'
+2. Sigue la secuencia de segmentos en el orden indicado
+3. Utiliza el archivo de audio original para mantener la voz auténtica
+4. Cada segmento debe tener un estilo visual acorde a su tipo narrativo
+5. Mantén la coherencia visual y narrativa entre segmentos

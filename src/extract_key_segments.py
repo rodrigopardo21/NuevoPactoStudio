@@ -243,7 +243,7 @@ class KeySegmentExtractor:
     
     def save_segments(self, segments, source_file, audio_file=None):
         """
-        Guarda los segmentos extraídos en un archivo JSON.
+        Guarda los segmentos extraídos en un archivo JSON y en un archivo TXT para fácil lectura.
         """
         if not segments:
             print("No hay segmentos para guardar")
@@ -263,18 +263,43 @@ class KeySegmentExtractor:
         
         # Generar nombre de archivo
         source_basename = os.path.basename(source_file)
-        output_filename = f"segments_{os.path.splitext(source_basename)[0]}.json"
-        output_path = os.path.join(self.segments_dir, output_filename)
+        output_filename = f"segments_{os.path.splitext(source_basename)[0]}"
+        json_path = os.path.join(self.segments_dir, output_filename + ".json")
+        txt_path = os.path.join(self.segments_dir, output_filename + ".txt")
         
-        # Guardar archivo
+        # Guardar archivo JSON
         try:
-            with open(output_path, 'w', encoding='utf-8') as f:
+            with open(json_path, 'w', encoding='utf-8') as f:
                 json.dump(output_data, f, ensure_ascii=False, indent=2)
-            print(f"Segmentos guardados en: {output_path}")
-            return output_path
+            print(f"Segmentos guardados en: {json_path}")
         except Exception as e:
-            print(f"Error al guardar segmentos: {e}")
+            print(f"Error al guardar segmentos JSON: {e}")
             return None
+        
+        # Guardar archivo TXT para fácil lectura
+        try:
+            with open(txt_path, 'w', encoding='utf-8') as f:
+                # Encabezado
+                f.write(f"SEGMENTOS POTENCIALES PARA REELS\n")
+                f.write(f"Archivo fuente: {source_basename}\n")
+                f.write(f"Fecha de extracción: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n")
+                f.write(f"Total de segmentos: {len(segments)}\n\n")
+                
+                # Escribir cada segmento
+                for i, segment in enumerate(segments, 1):
+                    f.write(f"#{i} - PUNTUACIÓN: {segment['importance_score']} - ")
+                    start_time = self.format_time(segment['start_time'])
+                    end_time = self.format_time(segment['end_time'])
+                    f.write(f"TIEMPO: {start_time} a {end_time} - ")
+                    f.write(f"DURACIÓN: {segment['duration']:.2f}s\n")
+                    f.write(f"TEXTO: \"{segment['text']}\"\n\n")
+                    f.write("-" * 80 + "\n\n")
+                
+            print(f"Versión de texto guardada en: {txt_path}")
+        except Exception as e:
+            print(f"Error al guardar versión de texto: {e}")
+        
+        return json_path
     
     def display_top_segments(self, segments, n=10):
         """
@@ -304,7 +329,7 @@ class KeySegmentExtractor:
         # Cargar transcripción
         transcription_data = self.load_transcription(json_file)
         if not transcription_data:
-            return None
+            return None, None
         
         audio_file = transcription_data.get('audio_file', None)
         
@@ -325,9 +350,13 @@ class KeySegmentExtractor:
         self.display_top_segments(segments)
         
         # Guardar segmentos
-        output_path = self.save_segments(segments, json_file, audio_file)
+        json_path = self.save_segments(segments, json_file, audio_file)
         
-        return output_path
+        if json_path:
+            txt_path = json_path.replace(".json", ".txt")
+            return json_path, txt_path
+        else:
+            return None, None
 
 def main():
     extractor = KeySegmentExtractor()
@@ -360,12 +389,13 @@ def main():
         return
     
     # Procesar el archivo seleccionado
-    output_path = extractor.process_transcription(selected_file)
+    json_path, txt_path = extractor.process_transcription(selected_file)
     
-    if output_path:
+    if json_path and txt_path:
         print("\n=== PROCESO COMPLETADO ===")
         print(f"El análisis ha identificado segmentos potenciales para reels")
-        print(f"Los datos completos están disponibles en: {output_path}")
+        print(f"Los datos en formato JSON están disponibles en: {json_path}")
+        print(f"Los datos en formato texto están disponibles en: {txt_path}")
         print("\nPuedes utilizar estos segmentos para crear reels que mantengan el audio y texto originales.")
     else:
         print("\n=== ERROR ===")

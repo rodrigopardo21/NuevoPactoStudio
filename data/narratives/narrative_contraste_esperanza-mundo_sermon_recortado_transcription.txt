@@ -1,0 +1,40 @@
+NARRATIVA PARA REEL: Contraste Esperanza-Mundo
+Archivo fuente: segments_sermon_recortado_transcription.json
+Fecha de creación: 26/04/2025 17:16:56
+Duración total: 61.09 segundos
+
+ESTRUCTURA NARRATIVA:
+1. Problema Mundial
+2. Verdad Bíblica
+3. Contraste
+4. Esperanza
+
+SECUENCIA DE SEGMENTOS:
+SEGMENTO 1 - TIEMPO: 00:02:13 a 00:02:35
+DURACIÓN: 21.31s - PUNTUACIÓN: 8
+TIPO: pregunta_retórica, cierre_empoderador, solución, verdad_bíblica, esperanza
+TEXTO: "En el nombre de Jesús. Amén. ¿Sabe usted que primera de Tesalonicenses es prácticamente el primer libro que el apóstol Pablo escribió?"
+
+SEGMENTO 2 - TIEMPO: 00:07:54 a 00:08:12
+DURACIÓN: 18.19s - PUNTUACIÓN: 9
+TIPO: contraste, esperanza
+TEXTO: "¿Sin embargo, la gran verdad que te quiero compartir hoy día es que tenemos que tener la esperanza puesta en Dios y por ende en creer que un día nuestro Señor Jesucristo nos va a dar todo lo que le ha prometido que nos va a dar, sí o no?"
+
+SEGMENTO 3 - TIEMPO: 00:12:15 a 00:12:22
+DURACIÓN: 7.77s - PUNTUACIÓN: 8
+TIPO: esperanza
+TEXTO: "Tenemos que mantener la esperanza que tenemos que estar buscando a Cristo y preparados, porque él nos hizo promesas."
+
+SEGMENTO 4 - TIEMPO: 00:14:19 a 00:14:33
+DURACIÓN: 13.82s - PUNTUACIÓN: 5
+TIPO: problema_mundial
+TEXTO: "Entonces, mientras vivo en este mundo tengo que vivir con sabiduría y eso es lo que nos hablaba el Señor la semana pasada, tengo que vivir para Cristo."
+
+================================================================================
+
+INSTRUCCIONES DE USO:
+1. Esta narrativa está diseñada para crear un reel impactante de estilo 'trailer'
+2. Sigue la secuencia de segmentos en el orden indicado
+3. Utiliza el archivo de audio original para mantener la voz auténtica
+4. Cada segmento debe tener un estilo visual acorde a su tipo narrativo
+5. Mantén la coherencia visual y narrativa entre segmentos
