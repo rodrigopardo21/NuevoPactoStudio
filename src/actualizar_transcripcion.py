@@ -1,4 +1,87 @@
-def test_write_access(file_path):
+def update_words_from_segments(json_data):
+    """
+    Actualiza las palabras individuales basadas en los segmentos editados.
+    Esto es necesario porque el SRT se genera a partir de las palabras.
+    """
+    if 'segments' not in json_data or not json_data['segments']:
+        print(f"{Fore.RED}No se encontraron segmentos en el JSON. No se pueden actualizar las palabras.")
+        return json_data
+    
+    if 'words' not in json_data or not json_data['words']:
+        print(f"{Fore.YELLOW}No hay palabras individuales en el JSON. Se generará el SRT usando segmentos.")
+        return json_data
+    
+    print(f"{Fore.YELLOW}Actualizando palabras basadas en los segmentos editados...")
+    
+    # Crear un mapeo de palabras para cada segmento
+    segment_word_map = {}
+    
+    for word in json_data['words']:
+        # Determinar a qué segmento pertenece esta palabra
+        word_start = word['start']
+        word_end = word['end']
+        
+        for i, segment in enumerate(json_data['segments']):
+            segment_start = segment['start'] if isinstance(segment['start'], int) else segment['start'] * 1000
+            segment_end = segment['end'] if isinstance(segment['end'], int) else segment['end'] * 1000
+            
+            # Si la palabra está dentro del rango de tiempo del segmento
+            if word_start >= segment_start and word_end <= segment_end:
+                if i not in segment_word_map:
+                    segment_word_map[i] = []
+                segment_word_map[i].append(word)
+                break
+    
+    # Contar cuantos segmentos tienen palabras mapeadas
+    mapped_segments = len(segment_word_map)
+    print(f"{Fore.YELLOW}Se encontraron palabras para {mapped_segments} de {len(json_data['segments'])} segmentos")
+    
+    # Forzar el uso de segmentos directamente si no hay suficientes palabras mapeadas
+    if mapped_segments < len(json_data['segments']) * 0.5:  # Si menos del 50% de los segmentos tienen palabras
+        print(f"{Fore.RED}No hay suficientes palabras mapeadas. Se usarán los segmentos directamente.")
+        # Marcamos que no use las palabras
+        json_data['use_segments_directly'] = True
+        return json_data
+    
+    # Para cada segmento con palabras, actualizar el texto de las palabras
+    modified_words = 0
+    for segment_index, words in segment_word_map.items():
+        if not words:
+            continue
+        
+        segment = json_data['segments'][segment_index]
+        segment_text = segment['text']
+        
+        # Si el texto del segmento es exactamente igual a la concatenación de las palabras, no hay cambios
+        words_text = ' '.join(w['text'] for w in words)
+        if words_text == segment_text:
+            continue
+        
+        # Estrategia simple: distribuir el nuevo texto proporcionalmente entre las palabras
+        # Primero dividimos el texto del segmento en palabras
+        new_words = segment_text.split()
+        
+        # Si el número de palabras no coincide, hacemos una asignación aproximada
+        if len(new_words) == len(words):
+            # Número igual de palabras - asignación directa
+            for i, word in enumerate(words):
+                word['text'] = new_words[i]
+                modified_words += 1
+        else:
+            # Número diferente de palabras - mantener los tiempos pero actualizar el texto
+            # Para simplicidad, usamos el nuevo texto completo para todas las palabras
+            # ya que el SRT usará el texto del segmento al final
+            for word in words:
+                word['original_text'] = word['text']  # Guardar el texto original por si acaso
+                word['text'] = segment_text
+                modified_words += 1
+    
+    print(f"{Fore.GREEN}Se actualizaron {modified_words} palabras basadas en los segmentos editados")
+    
+    # Marcar que el JSON ha sido procesado para palabras
+    json_data['words_updated_from_segments'] = True
+    
+    return json_datadef test_write_access(file_path):
     """Prueba de escritura para verificar permisos y ruta correcta."""
     try:
         # Primero, verificar si el directorio existe
@@ -46,6 +129,91 @@ init(autoreset=True)
 
 # Añadir la ruta del proyecto
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+def update_words_from_segments(json_data):
+    """
+    Actualiza las palabras individuales basadas en los segmentos editados.
+    Esto es necesario porque el SRT se genera a partir de las palabras.
+    """
+    if 'segments' not in json_data or not json_data['segments']:
+        print(f"{Fore.RED}No se encontraron segmentos en el JSON. No se pueden actualizar las palabras.")
+        return json_data
+    
+    if 'words' not in json_data or not json_data['words']:
+        print(f"{Fore.YELLOW}No hay palabras individuales en el JSON. Se generará el SRT usando segmentos.")
+        return json_data
+    
+    print(f"{Fore.YELLOW}Actualizando palabras basadas en los segmentos editados...")
+    
+    # Crear un mapeo de palabras para cada segmento
+    segment_word_map = {}
+    
+    for word in json_data['words']:
+        # Determinar a qué segmento pertenece esta palabra
+        word_start = word['start']
+        word_end = word['end']
+        
+        for i, segment in enumerate(json_data['segments']):
+            segment_start = segment['start'] if isinstance(segment['start'], int) else segment['start'] * 1000
+            segment_end = segment['end'] if isinstance(segment['end'], int) else segment['end'] * 1000
+            
+            # Si la palabra está dentro del rango de tiempo del segmento
+            if word_start >= segment_start and word_end <= segment_end:
+                if i not in segment_word_map:
+                    segment_word_map[i] = []
+                segment_word_map[i].append(word)
+                break
+    
+    # Contar cuantos segmentos tienen palabras mapeadas
+    mapped_segments = len(segment_word_map)
+    print(f"{Fore.YELLOW}Se encontraron palabras para {mapped_segments} de {len(json_data['segments'])} segmentos")
+    
+    # Forzar el uso de segmentos directamente si no hay suficientes palabras mapeadas
+    if mapped_segments < len(json_data['segments']) * 0.5:  # Si menos del 50% de los segmentos tienen palabras
+        print(f"{Fore.RED}No hay suficientes palabras mapeadas. Se usarán los segmentos directamente.")
+        # Marcamos que no use las palabras
+        json_data['use_segments_directly'] = True
+        return json_data
+    
+    # Para cada segmento con palabras, actualizar el texto de las palabras
+    modified_words = 0
+    for segment_index, words in segment_word_map.items():
+        if not words:
+            continue
+        
+        segment = json_data['segments'][segment_index]
+        segment_text = segment['text']
+        
+        # Si el texto del segmento es exactamente igual a la concatenación de las palabras, no hay cambios
+        words_text = ' '.join(w['text'] for w in words)
+        if words_text == segment_text:
+            continue
+        
+        # Estrategia simple: distribuir el nuevo texto proporcionalmente entre las palabras
+        # Primero dividimos el texto del segmento en palabras
+        new_words = segment_text.split()
+        
+        # Si el número de palabras no coincide, hacemos una asignación aproximada
+        if len(new_words) == len(words):
+            # Número igual de palabras - asignación directa
+            for i, word in enumerate(words):
+                word['text'] = new_words[i]
+                modified_words += 1
+        else:
+            # Número diferente de palabras - mantener los tiempos pero actualizar el texto
+            # Para simplicidad, usamos el nuevo texto completo para todas las palabras
+            # ya que el SRT usará el texto del segmento al final
+            for word in words:
+                word['original_text'] = word['text']  # Guardar el texto original por si acaso
+                word['text'] = segment_text
+                modified_words += 1
+    
+    print(f"{Fore.GREEN}Se actualizaron {modified_words} palabras basadas en los segmentos editados")
+    
+    # Marcar que el JSON ha sido procesado para palabras
+    json_data['words_updated_from_segments'] = True
+    
+    return json_data
 
 def test_write_access(file_path):
     """Prueba de escritura para verificar permisos y ruta correcta."""
@@ -277,14 +445,31 @@ def create_srt_file(json_data, folder_path, basename):
             print(f"{Fore.RED}Error al verificar permisos: {e}")
         return False
     
-    # Verificar si tenemos palabras para hacer subtítulos más precisos
-    if 'words' in json_data and json_data['words']:
-        segments = create_sentence_segments(json_data['words'])
-        print(f"{Fore.CYAN}Generando SRT usando marcas de tiempo a nivel de palabra (mayor precisión)")
-        print(f"{Fore.YELLOW}Segmentos generados: {len(segments)}")
+    # Decidir si usar segmentos directamente basado en la bandera o si no hay palabras
+    use_segments = json_data.get('use_segments_directly', False) or 'words' not in json_data or not json_data['words']
+    
+    if use_segments:
+        # Usar directamente los segmentos
+        segments = json_data.get('segments', [])
+        print(f"{Fore.YELLOW}Generando SRT usando segmentos directamente (por preferencia o falta de palabras)")
+        print(f"{Fore.YELLOW}Segmentos disponibles: {len(segments)}")
+    elif 'words' in json_data and json_data['words']:
+        # Usar palabras para mayor precisión, pero solo si fueron actualizadas
+        if json_data.get('words_updated_from_segments', False):
+            print(f"{Fore.CYAN}Generando SRT usando palabras actualizadas desde los segmentos editados")
+        else:
+            print(f"{Fore.YELLOW}ADVERTENCIA: Las palabras no fueron actualizadas desde los segmentos editados")
+            print(f"{Fore.YELLOW}Esto podría causar que los cambios en los segmentos no se reflejen en el SRT")
+            print(f"{Fore.YELLOW}Usando segmentos directamente para garantizar que los cambios se reflejen...")
+            segments = json_data.get('segments', [])
+            use_segments = True
+        
+        if not use_segments:
+            segments = create_sentence_segments(json_data['words'])
+            print(f"{Fore.YELLOW}Segmentos generados desde palabras: {len(segments)}")
     else:
         segments = json_data.get('segments', [])
-        print(f"{Fore.YELLOW}Generando SRT usando segmentos (menos preciso)")
+        print(f"{Fore.YELLOW}Generando SRT usando segmentos (no hay palabras disponibles)")
         print(f"{Fore.YELLOW}Segmentos disponibles: {len(segments)}")
     
     # Log para depuración - mostrar algunos segmentos
@@ -508,6 +693,9 @@ def main():
     original_text = json_data.get('text', '')
     json_data = sync_json_sections(json_data)
     updated_text = json_data.get('text', '')
+    
+    # Actualizar las palabras basadas en los segmentos editados
+    json_data = update_words_from_segments(json_data)
     
     # Verificar si hubo cambios reales
     if original_text == updated_text:
