@@ -3,7 +3,7 @@ def test_write_access(file_path):
     try:
         # Primero, verificar si el directorio existe
         directory = os.path.dirname(file_path)
-        if not os.path.exists(directory):
+        if directory and not os.path.exists(directory):
             print(f"{Fore.RED}El directorio no existe: {directory}")
             try:
                 os.makedirs(directory, exist_ok=True)
