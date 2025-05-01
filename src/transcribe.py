@@ -7,6 +7,10 @@ import glob
 import json
 import time
 from datetime import datetime
+from colorama import init, Fore, Back, Style
+
+# Inicializar colorama
+init(autoreset=True)  # autoreset=True hace que cada impresión vuelva al color normal
 
 # Añadir la ruta del proyecto para importaciones
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -31,6 +35,13 @@ class AssemblyAITranscriber:
         aai.settings.api_key = api_key
         self.transcriber = aai.Transcriber()
         
+        # Configurar colores para mensajes
+        self.COLOR_INFO = Fore.CYAN
+        self.COLOR_SUCCESS = Fore.GREEN
+        self.COLOR_WARNING = Fore.YELLOW
+        self.COLOR_ERROR = Fore.RED
+        self.COLOR_HIGHLIGHT = Fore.MAGENTA
+        
     def _format_time_srt(self, seconds):
         """Convierte segundos a formato HH:MM:SS,mmm para SRT"""
         hours, remainder = divmod(int(seconds), 3600)
@@ -45,7 +56,7 @@ class AssemblyAITranscriber:
         """
         # Verificar si hay palabras con marcas de tiempo precisas
         if 'words' in transcription_data and transcription_data['words']:
-            print("Generando SRT usando marcas de tiempo a nivel de palabra para mayor precisión...")
+            print(f"{self.COLOR_INFO}Generando SRT usando marcas de tiempo a nivel de palabra para mayor precisión...")
             words = transcription_data['words']
             
             # Crear segmentos a partir de palabras
@@ -109,7 +120,7 @@ class AssemblyAITranscriber:
             return srt_content
         
         # Si no hay marcas de tiempo a nivel de palabra, usar segmentos
-        print("Generando SRT usando segmentos (menos preciso)...")
+        print(f"{self.COLOR_WARNING}Generando SRT usando segmentos (menos preciso)...")
         return self._generate_srt_from_segments(transcription_data)
     
     def _format_multi_line(self, text, max_chars_per_line=40):
@@ -254,10 +265,10 @@ class AssemblyAITranscriber:
         os.makedirs(json_dir, exist_ok=True)
         os.makedirs(text_dir, exist_ok=True)
         
-        print(f"Carpeta de salida creada: {main_output_dir}")
-        print(f"  - Audio: {audio_dir}")
-        print(f"  - JSON: {json_dir}")
-        print(f"  - Texto: {text_dir}")
+        print(f"{self.COLOR_SUCCESS}Carpeta de salida creada: {main_output_dir}")
+        print(f"{self.COLOR_INFO}  - Audio: {audio_dir}")
+        print(f"{self.COLOR_INFO}  - JSON: {json_dir}")
+        print(f"{self.COLOR_INFO}  - Texto: {text_dir}")
         
         # Devolver un diccionario con las rutas
         return {
@@ -319,7 +330,7 @@ class AssemblyAITranscriber:
         from datetime import datetime
         
         try:
-            print(f"Iniciando transcripción de {os.path.basename(audio_path)} con AssemblyAI...")
+            print(f"{self.COLOR_INFO}Iniciando transcripción de {os.path.basename(audio_path)} con AssemblyAI...")
             
             # Configurar opciones de transcripción
             config = aai.TranscriptionConfig(
@@ -345,7 +356,7 @@ class AssemblyAITranscriber:
                 if transcript.status == aai.TranscriptStatus.error:
                     raise Exception(f"Error en la transcripción: {transcript.error}")
                 
-                print(f"Estado de la transcripción: {transcript.status}. Esperando 10 segundos...")
+                print(f"{self.COLOR_INFO}Estado de la transcripción: {transcript.status}. Esperando 10 segundos...")
                 time.sleep(10)
                 transcript = self.transcriber.get_transcript(transcript.id)
             
@@ -354,7 +365,7 @@ class AssemblyAITranscriber:
             
             # Obtener segmentos (utterances)
             if transcript.utterances:
-                print("Procesando segmentos de utterances (habla detectada)...")
+                print(f"{self.COLOR_INFO}Procesando segmentos de utterances (habla detectada)...")
                 for utterance in transcript.utterances:
                     # Dividir utterances largos en fragmentos más pequeños para mejorar sincronización
                     text = utterance.text.strip()
@@ -411,7 +422,7 @@ class AssemblyAITranscriber:
             
             # Si no hay utterances, intentar con palabras
             elif transcript.words:
-                print("No se detectaron utterances, procesando por palabras...")
+                print(f"{self.COLOR_WARNING}No se detectaron utterances, procesando por palabras...")
                 # Agrupar palabras en frases (cuando hay puntuación)
                 current_sentence = []
                 current_start = None
@@ -458,14 +469,14 @@ class AssemblyAITranscriber:
                         'speaker': word.speaker if hasattr(word, 'speaker') else 'A'
                     })
                 transcription_data['words'] = words_list
-                print(f"Se guardaron {len(words_list)} palabras con marcas de tiempo precisas")
+                print(f"{self.COLOR_SUCCESS}Se guardaron {len(words_list)} palabras con marcas de tiempo precisas")
             
             # Mostrar un extracto de la transcripción
             all_text = transcript.text.strip()
             if all_text:
-                print(f"Transcripción: \"{all_text[:100]}...\"")
+                print(f"{self.COLOR_SUCCESS}Transcripción: \"{all_text[:100]}...\"")
             else:
-                print("No se obtuvo texto en la transcripción")
+                print(f"{self.COLOR_WARNING}No se obtuvo texto en la transcripción")
             
             return transcription_data
             
@@ -489,11 +500,11 @@ class AssemblyAITranscriber:
             output_dirs = self._create_output_dir(video_filename)
             
             # Paso 1: Extraer el audio del video
-            print(f"Extrayendo audio de {video_filename}...")
+            print(f"{self.COLOR_INFO}Extrayendo audio de {video_filename}...")
             audio_path = self.extract_audio(video_path, output_dirs)
             
             # Paso 2: Transcribir el audio completo (AssemblyAI maneja archivos grandes)
-            print(f"Transcribiendo audio con AssemblyAI (esto puede tomar tiempo)...")
+            print(f"{self.COLOR_INFO}Transcribiendo audio con AssemblyAI (esto puede tomar tiempo)...")
             transcription_data = self.transcribe_audio(audio_path)
             
             # Paso 3: Guardar los resultados
@@ -512,7 +523,7 @@ class AssemblyAITranscriber:
             try:
                 with open(output_path, 'w', encoding='utf-8') as f:
                     json.dump(transcription_data, f, ensure_ascii=False, indent=4)
-                print(f"Transcripción guardada en: {output_path}")
+                print(f"{self.COLOR_SUCCESS}Transcripción guardada en: {output_path}")
                 
                 # Exportar como texto plano
                 text_output_filename = os.path.splitext(video_filename)[0] + "_transcript.txt"
@@ -533,7 +544,7 @@ class AssemblyAITranscriber:
                 # Guardar el texto
                 with open(text_output_path, 'w', encoding='utf-8') as f:
                     f.write('\n'.join(content))
-                print(f"Transcripción en texto plano guardada en: {text_output_path}")
+                print(f"{self.COLOR_SUCCESS}Transcripción en texto plano guardada en: {text_output_path}")
                 
                 # Versión formateada con marcas de tiempo
                 detailed_output_filename = os.path.splitext(video_filename)[0] + "_transcript_detailed.txt"
@@ -556,7 +567,7 @@ class AssemblyAITranscriber:
                 # Guardar el texto detallado
                 with open(detailed_output_path, 'w', encoding='utf-8') as f:
                     f.write('\n'.join(detailed_content))
-                print(f"Transcripción detallada guardada en: {detailed_output_path}")
+                print(f"{self.COLOR_SUCCESS}Transcripción detallada guardada en: {detailed_output_path}")
 
                 # Guardar también como archivo SRT para subtítulos
                 srt_output_filename = os.path.splitext(video_filename)[0] + "_subtitles.srt"
@@ -569,30 +580,37 @@ class AssemblyAITranscriber:
                 if srt_content:
                     with open(srt_output_path, 'w', encoding='utf-8') as f:
                         f.write('\n\n'.join(srt_content))
-                    print(f"Archivo de subtítulos SRT guardado en: {srt_output_path}")
+                    print(f"{self.COLOR_SUCCESS}Archivo de subtítulos SRT guardado en: {srt_output_path}")
                 else:
-                    print("No se generaron entradas SRT. El archivo quedará vacío.")
+                    print(f"{self.COLOR_WARNING}No se generaron entradas SRT. El archivo quedará vacío.")
 
             except Exception as e:
-                print(f"Error al guardar archivos de salida: {e}")
+                print(f"{self.COLOR_ERROR}Error al guardar archivos de salida: {e}")
 
             return transcription_data
 
         except Exception as e:
             error_message = f"Error procesando el video {video_filename}: {str(e)}"
-            print(error_message)
+            print(f"{self.COLOR_ERROR}{error_message}")
             raise Exception(error_message)
 
 def main():
+    # Mostrar encabezado del programa
+    print(f"{Fore.CYAN}{Style.BRIGHT}" + "="*60)
+    print(f"{Fore.CYAN}{Style.BRIGHT}  NuevoPactoStudio - Transcriptor de Sermones")
+    print(f"{Fore.CYAN}{Style.BRIGHT}  Powered by AssemblyAI")
+    print(f"{Fore.CYAN}{Style.BRIGHT}" + "="*60)
+    print()
+    
     # Cargar variables de entorno
     load_dotenv()
 
     # Verificar API key
     api_key = os.getenv("ASSEMBLYAI_API_KEY")
     if not api_key:
-        print("Error: No se encontró la API key de AssemblyAI en el archivo .env")
-        print("Crea un archivo .env con el siguiente contenido:")
-        print("ASSEMBLYAI_API_KEY=tu_clave_aqui")
+        print(f"{Fore.RED}{Style.BRIGHT}Error: No se encontró la API key de AssemblyAI en el archivo .env")
+        print(f"{Fore.YELLOW}Crea un archivo .env con el siguiente contenido:")
+        print(f"{Fore.GREEN}ASSEMBLYAI_API_KEY=tu_clave_aqui")
         sys.exit(1)
 
     # Configurar rutas
@@ -607,36 +625,36 @@ def main():
     videos = [f for f in os.listdir(input_dir) if f.endswith((".mp4", ".MP4"))]
 
     if not videos:
-        print(f"No se encontraron archivos de video en {input_dir}")
-        print("Por favor, coloca tus videos recortados en esta carpeta")
+        print(f"{Fore.RED}{Style.BRIGHT}No se encontraron archivos de video en {input_dir}")
+        print(f"{Fore.YELLOW}Por favor, coloca tus videos recortados en esta carpeta")
         sys.exit(1)
 
     # Mostrar videos disponibles
-    print("Videos disponibles para transcribir:")
+    print(f"{Fore.CYAN}{Style.BRIGHT}Videos disponibles para transcribir:")
     for i, video in enumerate(videos, 1):
-        print(f"{i}. {video}")
+        print(f"{Fore.GREEN}{i}.{Style.RESET_ALL} {video}")
 
     # Pedir selección al usuario
     try:
-        selection = int(input("\nSelecciona el número del video a transcribir (0 para salir): "))
+        selection = int(input(f"\n{Fore.YELLOW}Selecciona el número del video a transcribir (0 para salir): {Style.RESET_ALL}"))
         if selection == 0:
-            print("Operación cancelada")
+            print(f"{Fore.CYAN}Operación cancelada")
             sys.exit(0)
 
         selected_video = videos[selection - 1]
     except (ValueError, IndexError):
-        print("Selección inválida")
+        print(f"{Fore.RED}{Style.BRIGHT}Selección inválida")
         sys.exit(1)
 
     # Iniciar transcripción
-    print(f"\nIniciando transcripción de: {selected_video}")
+    print(f"\n{Fore.CYAN}{Style.BRIGHT}Iniciando transcripción de: {Fore.YELLOW}{selected_video}")
     transcriber = AssemblyAITranscriber(input_dir, output_dir, api_key)
 
     try:
         transcriber.process_video(selected_video)
-        print("\n¡Transcripción completada con éxito!")
+        print(f"\n{Fore.GREEN}{Style.BRIGHT}¡Transcripción completada con éxito!")
     except Exception as e:
-        print(f"\nError durante la transcripción: {e}")
+        print(f"\n{Fore.RED}{Style.BRIGHT}Error durante la transcripción: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

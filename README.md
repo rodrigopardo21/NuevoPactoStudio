@@ -24,7 +24,7 @@ Genera audio extraído, transcripciones detalladas con marcas de tiempo y subtí
       - `*_transcript_detailed.txt`: Transcripción con marcas de tiempo
       - `*_subtitles.srt`: Archivo de subtítulos sincronizados
 - `src/`: Scripts y código fuente
-  - `transcribe_assemblyai.py`: Script principal de transcripción
+  - `transcribe.py`: Script principal de transcripción
   - `create_accurate_srt.py`: Generador de subtítulos preciso
   - `recortar_video.py`: Herramienta para recortar videos
   - `json_to_srt.py`: Conversor de JSON a SRT
@@ -69,7 +69,7 @@ Este script te guiará para:
 ### 2. Transcribir un video y generar subtítulos
 
 ```bash
-python src/transcribe_assemblyai.py
+python src/transcribe.py
 ```
 
 Este script te guiará para:

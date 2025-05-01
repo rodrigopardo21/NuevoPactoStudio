@@ -2,3 +2,4 @@ ffmpeg-python==0.2.0
 python-dotenv==1.0.0
 pydub==0.25.1
 assemblyai>=0.40.0
+colorama==0.4.6
