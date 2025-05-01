@@ -6,6 +6,10 @@ import sys
 import subprocess
 from datetime import datetime
 import time
+from colorama import init, Fore, Back, Style
+
+# Inicializar colorama
+init(autoreset=True)  # autoreset=True hace que cada impresión vuelva al color normal
 
 def main():
     # Configurar rutas
@@ -21,52 +25,52 @@ def main():
     videos = [f for f in os.listdir(source_dir) if f.endswith((".mp4", ".MP4"))]
     
     if not videos:
-        print(f"No se encontraron archivos de video en {source_dir}")
-        print(f"Por favor, coloca tus videos originales en {source_dir}")
+        print(f"{Fore.RED}{Style.BRIGHT}No se encontraron archivos de video en {source_dir}")
+        print(f"{Fore.YELLOW}Por favor, coloca tus videos originales en {source_dir}")
         sys.exit(1)
     
     # Mostrar videos disponibles
-    print("\n=== RECORTADOR DE VIDEOS ===")
-    print(f"\nVideos disponibles en: {source_dir}")
-    print("-" * 50)
+    print(f"\n{Fore.CYAN}{Style.BRIGHT}=== RECORTADOR DE VIDEOS ===")
+    print(f"\n{Fore.CYAN}Videos disponibles en: {source_dir}")
+    print(f"{Fore.CYAN}{'-' * 50}")
     for i, video in enumerate(videos, 1):
-        print(f"{i}. {video}")
-    print("-" * 50)
+        print(f"{Fore.GREEN}{i}.{Style.RESET_ALL} {video}")
+    print(f"{Fore.CYAN}{'-' * 50}")
     
     # Pedir selección al usuario
     try:
-        selection = int(input("\nSelecciona el número del video a recortar (0 para salir): "))
+        selection = int(input(f"\n{Fore.YELLOW}Selecciona el número del video a recortar (0 para salir): {Style.RESET_ALL}"))
         if selection == 0:
-            print("Operación cancelada")
+            print(f"{Fore.CYAN}Operación cancelada")
             sys.exit(0)
         
         if selection < 1 or selection > len(videos):
-            print("Selección inválida")
+            print(f"{Fore.RED}{Style.BRIGHT}Selección inválida")
             sys.exit(1)
             
         selected_video = videos[selection - 1]
-        print(f"\nVideo seleccionado: {selected_video}")
+        print(f"\n{Fore.CYAN}Video seleccionado: {Fore.YELLOW}{selected_video}")
     except (ValueError, IndexError):
-        print("Selección inválida")
+        print(f"{Fore.RED}{Style.BRIGHT}Selección inválida")
         sys.exit(1)
     
     # Pedir tiempos de inicio y fin
     try:
-        print("\nIntroduce los tiempos en formato HH:MM:SS")
-        start_time = input("Tiempo de inicio: ")
-        end_time = input("Tiempo de fin (dejar vacío para cortar hasta el final): ")
+        print(f"\n{Fore.CYAN}Introduce los tiempos en formato HH:MM:SS")
+        start_time = input(f"{Fore.YELLOW}Tiempo de inicio: {Style.RESET_ALL}")
+        end_time = input(f"{Fore.YELLOW}Tiempo de fin (dejar vacío para cortar hasta el final): {Style.RESET_ALL}")
         
         # Nombre del archivo de salida
         default_name = f"sermon_recortado_{datetime.now().strftime('%d%m%y')}"
-        print(f"\nNombre sugerido: {default_name}")
-        output_name = input(f"Nombre para el archivo recortado (Enter para usar el sugerido): ")
+        print(f"\n{Fore.CYAN}Nombre sugerido: {Fore.GREEN}{default_name}")
+        output_name = input(f"{Fore.YELLOW}Nombre para el archivo recortado (Enter para usar el sugerido): {Style.RESET_ALL}")
         
         if not output_name:
             output_name = default_name
         
         output_file = os.path.join(output_dir, f"{output_name}.mp4")
     except KeyboardInterrupt:
-        print("\nOperación cancelada")
+        print(f"\n{Fore.CYAN}Operación cancelada")
         sys.exit(0)
     
     # Preparar el comando ffmpeg
@@ -94,14 +98,14 @@ def main():
     
     # Ejecutar el comando
     try:
-        print("\n=== COMENZANDO RECORTE ===")
-        print(f"Video: {selected_video}")
-        print(f"Desde: {start_time}")
+        print(f"\n{Fore.CYAN}{Style.BRIGHT}=== COMENZANDO RECORTE ===")
+        print(f"{Fore.CYAN}Video: {Fore.YELLOW}{selected_video}")
+        print(f"{Fore.CYAN}Desde: {Fore.GREEN}{start_time}")
         if end_time:
-            print(f"Hasta: {end_time}")
-        print(f"Guardando como: {output_name}.mp4")
-        print("-" * 50)
-        print("Procesando...")
+            print(f"{Fore.CYAN}Hasta: {Fore.GREEN}{end_time}")
+        print(f"{Fore.CYAN}Guardando como: {Fore.GREEN}{output_name}.mp4")
+        print(f"{Fore.CYAN}{'-' * 50}")
+        print(f"{Fore.YELLOW}Procesando...")
         
         # Mostrar un contador simple para indicar progreso
         process = subprocess.Popen(
@@ -120,19 +124,19 @@ def main():
         
         # Verificar si el proceso terminó correctamente
         if process.returncode == 0:
-            print("\r¡Video recortado con éxito!          ")
-            print(f"\nGuardado en: {output_file}")
+            print(f"\r{Fore.GREEN}{Style.BRIGHT}¡Video recortado con éxito!          ")
+            print(f"\n{Fore.CYAN}Guardado en: {Fore.GREEN}{output_file}")
         else:
-            print("\rError al recortar el video          ")
+            print(f"\r{Fore.RED}{Style.BRIGHT}Error al recortar el video          ")
             stderr = process.stderr.read().decode('utf-8', errors='ignore')
-            print(f"Error: {stderr}")
+            print(f"{Fore.RED}Error: {stderr}")
             sys.exit(1)
             
     except subprocess.CalledProcessError as e:
-        print(f"\nError al recortar el video: {e}")
+        print(f"\n{Fore.RED}{Style.BRIGHT}Error al recortar el video: {e}")
         sys.exit(1)
     except KeyboardInterrupt:
-        print("\nOperación cancelada por el usuario")
+        print(f"\n{Fore.YELLOW}Operación cancelada por el usuario")
         # Intentar matar el proceso si está en ejecución
         if 'process' in locals() and process.poll() is None:
             process.terminate()
