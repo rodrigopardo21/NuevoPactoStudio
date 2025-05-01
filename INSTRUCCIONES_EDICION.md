@@ -84,7 +84,7 @@ Deberías encontrar:
 
 ### Consejos generales
 - Haz correcciones pequeñas y ejecuta el actualizador con frecuencia
-- El script crea copias de respaldo automáticamente, así que no te preocupes por sobreescribir archivos
+- El script sobrescribe los archivos existentes sin crear copias de respaldo
 - Mantén la puntuación original cuando sea posible
 
 ### Errores comunes al editar JSON
@@ -125,9 +125,9 @@ Deberías encontrar:
 - Asegúrate de que estás editando el archivo JSON correcto (el más reciente)
 - Verifica que guardaste el archivo antes de ejecutar el script
 
-### Deseas restaurar una versión anterior
-- Busca los archivos de respaldo con extensión `.bak` en las carpetas correspondientes
-- Copia el contenido del archivo de respaldo al archivo original
+### Deseas volver a una versión anterior
+- Si necesitas volver a una versión anterior, considera usar el control de versiones (git)
+- Se recomienda hacer commits frecuentes para tener puntos de recuperación
 
 ## Preguntas frecuentes
 

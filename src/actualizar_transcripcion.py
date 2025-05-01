@@ -124,17 +124,6 @@ def save_plain_text(json_data, folder_path, basename):
     text_dir = os.path.join(folder_path, "text")
     text_file = os.path.join(text_dir, f"{basename}_transcript.txt")
     
-    # Crear copia de respaldo si existe
-    if os.path.exists(text_file):
-        backup_name = f"{basename}_transcript_bak_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-        backup_path = os.path.join(text_dir, backup_name)
-        try:
-            with open(text_file, 'r', encoding='utf-8') as src, open(backup_path, 'w', encoding='utf-8') as dst:
-                dst.write(src.read())
-            print(f"{Fore.CYAN}Respaldo del texto creado: {Fore.GREEN}{backup_name}")
-        except Exception as e:
-            print(f"{Fore.RED}Error al crear respaldo: {e}")
-    
     # Crear contenido del archivo de texto
     content = []
     content.append(f"TRANSCRIPCIÓN: {basename}")
@@ -185,17 +174,6 @@ def create_srt_file(json_data, folder_path, basename):
     """Crea un archivo SRT a partir de los segmentos del JSON."""
     text_dir = os.path.join(folder_path, "text")
     srt_file = os.path.join(text_dir, f"{basename}_subtitles.srt")
-    
-    # Crear copia de respaldo si existe
-    if os.path.exists(srt_file):
-        backup_name = f"{basename}_subtitles_bak_{datetime.now().strftime('%Y%m%d_%H%M%S')}.srt"
-        backup_path = os.path.join(text_dir, backup_name)
-        try:
-            with open(srt_file, 'r', encoding='utf-8') as src, open(backup_path, 'w', encoding='utf-8') as dst:
-                dst.write(src.read())
-            print(f"{Fore.CYAN}Respaldo del SRT creado: {Fore.GREEN}{backup_name}")
-        except Exception as e:
-            print(f"{Fore.RED}Error al crear respaldo: {e}")
     
     # Verificar si tenemos palabras para hacer subtítulos más precisos
     if 'words' in json_data and json_data['words']:
@@ -305,17 +283,11 @@ def create_sentence_segments(words, max_words_per_segment=8, max_segment_duratio
 def save_updated_json(json_data, json_file):
     """Guarda el JSON actualizado."""
     try:
-        # Crear copia de respaldo
-        backup_path = f"{json_file}.bak.{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-        with open(json_file, 'r', encoding='utf-8') as src, open(backup_path, 'w', encoding='utf-8') as dst:
-            dst.write(src.read())
-        
         # Guardar el JSON actualizado
         with open(json_file, 'w', encoding='utf-8') as f:
             json.dump(json_data, f, ensure_ascii=False, indent=2)
             
         print(f"{Fore.GREEN}JSON actualizado y guardado con éxito")
-        print(f"{Fore.CYAN}Respaldo creado: {Fore.GREEN}{os.path.basename(backup_path)}")
         return True
     except Exception as e:
         print(f"{Fore.RED}Error al guardar el JSON: {e}")

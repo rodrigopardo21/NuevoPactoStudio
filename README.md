@@ -157,4 +157,4 @@ Si la transcripción dice "enmendadme de mis pecados" pero debería ser "arrepen
 - El sistema puede manejar archivos de audio/video largos
 - Se recomienda revisar y corregir manualmente las transcripciones para mayor precisión
 - Las ediciones solo deben hacerse en los textos, no en las marcas de tiempo
-- El script de actualización crea copias de respaldo automáticamente
+- El script de actualización sobrescribe los archivos existentes sin crear copias de respaldo
