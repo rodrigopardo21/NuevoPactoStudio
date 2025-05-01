@@ -28,7 +28,6 @@ Genera audio extraído, transcripciones detalladas con marcas de tiempo y subtí
   - `create_accurate_srt.py`: Generador de subtítulos preciso
   - `recortar_video.py`: Herramienta para recortar videos
   - `json_to_srt.py`: Conversor de JSON a SRT
-  - `transcriber/`: Módulos de transcripción
 
 ## Requisitos
 
