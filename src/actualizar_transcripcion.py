@@ -1,4 +1,34 @@
-#!/usr/bin/env python3
+def test_write_access(file_path):
+    """Prueba de escritura para verificar permisos y ruta correcta."""
+    try:
+        # Primero, verificar si el directorio existe
+        directory = os.path.dirname(file_path)
+        if not os.path.exists(directory):
+            print(f"{Fore.RED}El directorio no existe: {directory}")
+            try:
+                os.makedirs(directory, exist_ok=True)
+                print(f"{Fore.GREEN}Directorio creado: {directory}")
+            except Exception as e:
+                print(f"{Fore.RED}Error al crear el directorio: {e}")
+                return False
+        
+        # Intentar escribir un archivo de prueba
+        test_file = file_path + ".test"
+        with open(test_file, 'w', encoding='utf-8') as f:
+            f.write("Prueba de escritura: " + datetime.now().isoformat())
+        
+        # Verificar que se creó el archivo
+        if os.path.exists(test_file):
+            print(f"{Fore.GREEN}Prueba de escritura exitosa: {test_file}")
+            # Eliminar el archivo de prueba
+            os.remove(test_file)
+            return True
+        else:
+            print(f"{Fore.RED}No se pudo crear el archivo de prueba")
+            return False
+    except Exception as e:
+        print(f"{Fore.RED}Error durante la prueba de escritura: {e}")
+        return False#!/usr/bin/env python3
 """
 Script para actualizar la transcripción y regenerar todos los archivos.
 Este script sincroniza las ediciones del JSON y regenera tanto el SRT como el TXT.
@@ -16,6 +46,38 @@ init(autoreset=True)
 
 # Añadir la ruta del proyecto
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+def test_write_access(file_path):
+    """Prueba de escritura para verificar permisos y ruta correcta."""
+    try:
+        # Primero, verificar si el directorio existe
+        directory = os.path.dirname(file_path)
+        if not os.path.exists(directory):
+            print(f"{Fore.RED}El directorio no existe: {directory}")
+            try:
+                os.makedirs(directory, exist_ok=True)
+                print(f"{Fore.GREEN}Directorio creado: {directory}")
+            except Exception as e:
+                print(f"{Fore.RED}Error al crear el directorio: {e}")
+                return False
+        
+        # Intentar escribir un archivo de prueba
+        test_file = file_path + ".test"
+        with open(test_file, 'w', encoding='utf-8') as f:
+            f.write("Prueba de escritura: " + datetime.now().isoformat())
+        
+        # Verificar que se creó el archivo
+        if os.path.exists(test_file):
+            print(f"{Fore.GREEN}Prueba de escritura exitosa: {test_file}")
+            # Eliminar el archivo de prueba
+            os.remove(test_file)
+            return True
+        else:
+            print(f"{Fore.RED}No se pudo crear el archivo de prueba")
+            return False
+    except Exception as e:
+        print(f"{Fore.RED}Error durante la prueba de escritura: {e}")
+        return False
 
 def format_time_srt(milliseconds):
     """Convierte milisegundos a formato HH:MM:SS,mmm para SRT"""
@@ -202,6 +264,19 @@ def create_srt_file(json_data, folder_path, basename):
     # Agregar log para depuración
     print(f"{Fore.YELLOW}Ruta del archivo SRT: {srt_file}")
     
+    # Verificar acceso de escritura al archivo
+    if not test_write_access(srt_file):
+        print(f"{Fore.RED}{Style.BRIGHT}No se puede escribir en la ruta del archivo SRT. Verificando permisos...")
+        try:
+            # Verificar si podemos escribir en el directorio
+            if not os.access(text_dir, os.W_OK):
+                print(f"{Fore.RED}No tienes permisos de escritura en el directorio: {text_dir}")
+            else:
+                print(f"{Fore.GREEN}Tienes permisos de escritura en el directorio, pero hay otro problema")
+        except Exception as e:
+            print(f"{Fore.RED}Error al verificar permisos: {e}")
+        return False
+    
     # Verificar si tenemos palabras para hacer subtítulos más precisos
     if 'words' in json_data and json_data['words']:
         segments = create_sentence_segments(json_data['words'])
@@ -217,6 +292,9 @@ def create_srt_file(json_data, folder_path, basename):
         print(f"{Fore.YELLOW}Ejemplo de segmentos:")
         for i, segment in enumerate(segments[:3], 1):
             print(f"{Fore.CYAN}Segmento {i}: {segment['text'][:50]}...")
+    else:
+        print(f"{Fore.RED}{Style.BRIGHT}No hay segmentos para generar el archivo SRT!")
+        return False
     
     # Generar entradas SRT
     srt_entries = []
@@ -255,6 +333,11 @@ def create_srt_file(json_data, folder_path, basename):
     
     print(f"{Fore.YELLOW}Total de entradas SRT generadas: {len(srt_entries)}")
     
+    # Verificar que tenemos entradas SRT
+    if not srt_entries:
+        print(f"{Fore.RED}{Style.BRIGHT}No se generaron entradas SRT. No hay nada que guardar.")
+        return False
+    
     # Guardar archivo SRT
     try:
         # Asegurarnos de que las entradas estén bien formateadas
@@ -262,8 +345,14 @@ def create_srt_file(json_data, folder_path, basename):
         if not srt_content.endswith("\n"):
             srt_content += "\n"  # Asegurar que el archivo termina con una línea en blanco
         
+        # Usar método alternativo de escritura para asegurar que el archivo se escriba correctamente
+        print(f"{Fore.YELLOW}Escribiendo archivo SRT usando método alternativo...")
         with open(srt_file, 'w', encoding='utf-8') as f:
+            # Escribir línea por línea para evitar problemas de búfer
             f.write(srt_content)
+            f.flush()  # Forzar escritura a disco
+            os.fsync(f.fileno())  # Asegurar que se escribe a nivel de sistema operativo
+        
         print(f"{Fore.GREEN}Archivo SRT actualizado: {Fore.CYAN}{srt_file}")
         
         # Verificar que el archivo se creó correctamente
@@ -281,10 +370,13 @@ def create_srt_file(json_data, folder_path, basename):
                 print(f"{Fore.RED}Error al leer el archivo SRT para verificación: {e}")
         else:
             print(f"{Fore.RED}El archivo SRT no existe después de intentar guardarlo")
+            return False
             
         return True
     except Exception as e:
         print(f"{Fore.RED}Error al guardar el archivo SRT: {e}")
+        import traceback
+        traceback.print_exc()
         return False
 
 def create_sentence_segments(words, max_words_per_segment=8, max_segment_duration=2500):
@@ -438,16 +530,42 @@ def main():
     
     # Guardar el JSON actualizado
     if not save_updated_json(json_data, json_file):
+        print(f"{Fore.RED}Error al guardar el JSON actualizado. No se puede continuar.")
         return
     
     # Actualizar el archivo de texto plano
-    save_plain_text(json_data, folder, basename)
+    if not save_plain_text(json_data, folder, basename):
+        print(f"{Fore.RED}Error al guardar el archivo de texto. Continuando con el SRT...")
+    
+    # Forzar un breve retraso para asegurarse de que el sistema de archivos esté sincronizado
+    print(f"{Fore.YELLOW}Esperando a que el sistema de archivos se sincronice...")
+    try:
+        import time
+        time.sleep(1)
+    except Exception:
+        pass
+    
+    # Verificar directorios antes de crear el SRT
+    text_dir = os.path.join(folder, "text")
+    if not os.path.exists(text_dir):
+        try:
+            os.makedirs(text_dir, exist_ok=True)
+            print(f"{Fore.GREEN}Directorio de texto creado: {text_dir}")
+        except Exception as e:
+            print(f"{Fore.RED}Error al crear directorio de texto: {e}")
     
     # Crear/actualizar el archivo SRT
-    create_srt_file(json_data, folder, basename)
+    srt_success = create_srt_file(json_data, folder, basename)
     
-    print(f"\n{Fore.GREEN}{Style.BRIGHT}¡Actualización completa!")
-    print(f"{Fore.CYAN}Se han actualizado todos los archivos basados en el JSON editado")
+    if srt_success:
+        print(f"\n{Fore.GREEN}{Style.BRIGHT}¡Actualización completa!")
+        print(f"{Fore.CYAN}Se han actualizado todos los archivos basados en el JSON editado")
+    else:
+        print(f"\n{Fore.YELLOW}{Style.BRIGHT}Actualización parcial.")
+        print(f"{Fore.CYAN}Los archivos de texto se actualizaron, pero hubo problemas con el archivo SRT.")
+    
+    print(f"\n{Fore.GREEN}Para verificar los archivos generados, revisa la carpeta:")
+    print(f"{Fore.CYAN}{os.path.join(folder, 'text')}")
 
 if __name__ == "__main__":
     main()
