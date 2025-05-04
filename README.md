@@ -11,6 +11,7 @@ Genera audio extraído, transcripciones detalladas con marcas de tiempo y subtí
 - Organización automática de archivos por fecha
 - Múltiples formatos de salida (JSON, TXT, SRT)
 - Interfaz amigable con colores para mejor visualización
+- Corrección de transcripciones mediante edición del JSON original
 
 ## Estructura del Proyecto
 
@@ -27,6 +28,7 @@ Genera audio extraído, transcripciones detalladas con marcas de tiempo y subtí
 - `src/`: Scripts y código fuente
   - `recortar_video.py`: Herramienta para recortar videos originales
   - `transcribe.py`: Script principal de transcripción
+  - `fix_srt.py`: Script para corregir errores en las transcripciones y generar nuevos SRT
 
 ## Requisitos
 
@@ -77,6 +79,18 @@ Este script te guiará para:
 - Enviar a AssemblyAI para transcripción
 - Guardar todos los archivos generados (audio, JSON, TXT y SRT)
 
+### 3. Corregir errores en la transcripción (Nuevo)
+
+```bash
+python src/fix_srt.py
+```
+
+Este script te permite:
+- Seleccionar el archivo JSON de una transcripción existente
+- Abrir el editor Code para corregir palabras mal transcritas en la sección "words"
+- Generar automáticamente un nuevo archivo SRT una vez realizadas las correcciones
+- Solucionar problemas con palabras incorrectas o mal interpretadas por el transcriptor
+
 ## Resultados
 
 Después de la transcripción, encontrarás los siguientes archivos en la carpeta `data/output/sermon_DDMMAA_XX/`:
@@ -93,3 +107,4 @@ Después de la transcripción, encontrarás los siguientes archivos en la carpet
 - El sistema puede manejar archivos de audio/video largos
 - La API de AssemblyAI proporciona transcripciones precisas en español con detección de hablantes
 - Los subtítulos SRT generados tienen sincronización precisa a nivel de palabra
+- El script `fix_srt.py` facilita la corrección de palabras mal transcritas sin afectar la sincronización
