@@ -1,7 +1,6 @@
-# NuevoPactoStudio - Transcriptor y Subtitulador de Sermones
+# NuevoPactoStudio - Transcriptor, Subtitulador y Extractor de Sermones
 
-Este proyecto transcribe automáticamente sermones de video a texto utilizando la API de AssemblyAI.
-Genera audio extraído, transcripciones detalladas con marcas de tiempo y subtítulos perfectamente sincronizados (SRT).
+Este proyecto permite procesar sermones en video para generar transcripciones detalladas y extraer segmentos impactantes para la creación de reels. Utiliza la API de AssemblyAI para la transcripción automática y la API de Claude para el análisis inteligente del contenido.
 
 ## Características
 
@@ -12,6 +11,10 @@ Genera audio extraído, transcripciones detalladas con marcas de tiempo y subtí
 - Múltiples formatos de salida (JSON, TXT, SRT)
 - Interfaz amigable con colores para mejor visualización
 - Corrección de transcripciones mediante edición del JSON original
+- **NUEVO**: Extracción inteligente de segmentos para reels con la API de Claude
+  - Análisis avanzado del contenido para identificar ideas impactantes
+  - Generación automática de clips de audio para cada segmento
+  - Puntuación y clasificación de segmentos por impacto teológico
 
 ## Estructura del Proyecto
 
@@ -25,16 +28,23 @@ Genera audio extraído, transcripciones detalladas con marcas de tiempo y subtí
       - `*_transcript.txt`: Transcripción en texto plano
       - `*_transcript_detailed.txt`: Transcripción con marcas de tiempo
       - `*_subtitles.srt`: Archivo de subtítulos sincronizados
+    - `reels/`: **NUEVO** - Segmentos extraídos para reels
+      - `audio/`: Clips de audio extraídos para cada segmento
+      - `text/`: Archivos de texto y subtítulos para cada segmento
+      - `reel_segments.json`: Datos detallados de todos los segmentos extraídos
 - `src/`: Scripts y código fuente
   - `recortar_video.py`: Herramienta para recortar videos originales
   - `transcribe.py`: Script principal de transcripción
   - `fix_srt.py`: Script para corregir errores en las transcripciones y generar nuevos SRT
+  - `extract_reels.py`: **NUEVO** - Script para extraer segmentos impactantes para reels
+- `backup/`: Copias de seguridad de archivos importantes
 
 ## Requisitos
 
 - Python 3.12.2 o superior
 - ffmpeg (instalado en el sistema)
 - Cuenta y API Key de AssemblyAI
+- Cuenta y API Key de Anthropic (Claude)
 - Dependencias de Python listadas en `requirements.txt`
 
 ## Instalación
@@ -48,10 +58,11 @@ source venv/bin/activate  # En Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-3. Crea un archivo `.env` en la raíz del proyecto con tu API key:
+3. Crea un archivo `.env` en la raíz del proyecto con tus API keys:
 
 ```
 ASSEMBLYAI_API_KEY=tu_clave_api_de_assemblyai
+ANTHROPIC_API_KEY=tu_clave_api_de_claude
 ```
 
 ## Flujo de trabajo
@@ -79,7 +90,7 @@ Este script te guiará para:
 - Enviar a AssemblyAI para transcripción
 - Guardar todos los archivos generados (audio, JSON, TXT y SRT)
 
-### 3. Corregir errores en la transcripción (Nuevo)
+### 3. Corregir errores en la transcripción
 
 ```bash
 python src/fix_srt.py
@@ -91,9 +102,23 @@ Este script te permite:
 - Generar automáticamente un nuevo archivo SRT una vez realizadas las correcciones
 - Solucionar problemas con palabras incorrectas o mal interpretadas por el transcriptor
 
+### 4. Extraer segmentos para reels (NUEVO)
+
+```bash
+python src/extract_reels.py
+```
+
+Este script te permite:
+- Seleccionar un sermón transcrito de la lista disponible
+- Analizar automáticamente el contenido usando la API de Claude
+- Identificar segmentos impactantes y teológicamente relevantes
+- Extraer clips de audio para cada segmento
+- Generar archivos de texto y subtítulos para cada reel
+- Ordenar los segmentos por puntuación de relevancia
+
 ## Resultados
 
-Después de la transcripción, encontrarás los siguientes archivos en la carpeta `data/output/sermon_DDMMAA_XX/`:
+### Después de la transcripción:
 
 - Audio extraído (MP3)
 - Transcripción completa con marcas de tiempo (JSON)
@@ -101,10 +126,18 @@ Después de la transcripción, encontrarás los siguientes archivos en la carpet
 - Transcripción detallada con marcas de tiempo (TXT)
 - Archivo de subtítulos SRT perfectamente sincronizado
 
+### Después de la extracción de reels:
+
+- Clips de audio individuales para cada segmento (MP3)
+- Archivos de texto explicativos para cada segmento (TXT)
+- Archivos de subtítulos para cada segmento (SRT)
+- JSON con datos detallados de todos los segmentos
+
 ## Notas
 
 - La calidad de la transcripción depende de la claridad del audio
 - El sistema puede manejar archivos de audio/video largos
 - La API de AssemblyAI proporciona transcripciones precisas en español con detección de hablantes
 - Los subtítulos SRT generados tienen sincronización precisa a nivel de palabra
-- El script `fix_srt.py` facilita la corrección de palabras mal transcritas sin afectar la sincronización
+- La API de Claude analiza el contenido teológico y extrae las ideas más impactantes
+- Los segmentos extraídos son ideas completas que funcionan de manera autónoma

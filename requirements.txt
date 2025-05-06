@@ -3,3 +3,4 @@ python-dotenv==1.0.0
 pydub==0.25.1
 assemblyai>=0.40.0
 colorama==0.4.6
+anthropic>=0.7.0
