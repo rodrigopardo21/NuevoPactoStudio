@@ -37,43 +37,42 @@ def setup_claude_client():
         print(f"{Fore.RED}Error al configurar el cliente de Claude: {e}")
         sys.exit(1)
 
-def create_clip_prompt(segment, count=7):
+def create_clip_prompt(segment, count=None):
     """
     Crea un prompt para enviar a Claude para generar ideas de clips visuales.
     
     Args:
         segment (dict): Datos del segmento de reel
-        count (int): Número de ideas de prompts a generar
+        count (int, optional): Número de ideas de prompts a generar.
+                              Si es None, se calcula automáticamente según la duración.
     
     Returns:
         str: Prompt para Claude
+        int: Número de prompts solicitados
     """
     text = segment["text"]
     duration = segment["duration"]
     score = segment.get("score", 0)
     reasons = segment.get("reasons", "")
     
-    # Creamos ejemplos explícitos para el formato de prompts
-    examples = """
-    EJEMPLOS DE FORMATO:
-    
-    **Prompt 1: Fe en Acción**
-    **Descripción: **Una persona joven de pie en lo alto de una montaña al amanecer con brazos extendidos. La luz dorada ilumina su silueta, mientras nubes suaves flotan por debajo. La escena transmite esperanza, libertad y conexión espiritual.
-    **Frase del Audio: **"La fe verdadera siempre nos impulsa a levantarnos y actuar."
-    **Prompt: **"Silueta inspiradora de persona en cima de montaña al amanecer, brazos extendidos en alabanza, luz dorada, nubes suaves por debajo, formato vertical, fotografía cinematográfica, tonos cálidos, esperanza, libertad espiritual."
-    
-    **Prompt 2: Camino de Luz**
-    **Descripción: **Un sendero iluminado a través de un bosque oscuro. Rayos de luz atraviesan el dosel de árboles, iluminando el camino. Pequeñas partículas de luz danzan en el aire, creando una atmósfera mística y espiritual.
-    **Frase del Audio: **"Dios siempre ilumina nuestro camino, incluso en los momentos más oscuros."
-    **Prompt: **"Sendero iluminado en bosque oscuro, rayos de luz divina atravesando árboles, partículas luminosas en el aire, atmósfera mística, profundidad de campo, luz volumétrica, fotografía detallada, HDR, inspirador, guía espiritual."
-    """
+    # Si no se especifica count, calcularlo basado en la duración
+    # Asumiendo clips de 8 segundos para Google AI Studio Veo2
+    if count is None:
+        # Calcular cuántos clips de 8 segundos caben en la duración del reel
+        # y reducir un 20% para dar espacio
+        clip_duration = 8  # segundos por clip
+        count = max(1, min(7, int((duration / clip_duration) * 0.8)))
     
     prompt = f"""
     Eres un experto creativo en generación de ideas visuales para contenido religioso cristiano.
     
-    Necesito que generes exactamente {count} ideas de prompts visuales (escenas) basados en el siguiente segmento de sermón.
-    Cada prompt debe poder ilustrar/visualizar una parte específica del mensaje y ser útil para crear
-    imágenes o videos generativos que acompañen el audio.
+    Necesito que generes exactamente {count} ideas de prompts visuales para crear clips de video con Google AI Studio Veo2.
+    Cada prompt debe poder ilustrar/visualizar una parte específica del mensaje y ser útil para crear clips
+    de video generativo que acompañen el audio.
+    
+    IMPORTANTE: Cada clip de video tendrá una duración de aproximadamente 8 segundos, y en total
+    necesito cubrir un audio de {duration:.1f} segundos. Debes asegurarte de que tus {count} ideas
+    cubran adecuadamente el mensaje completo del segmento.
     
     SEGMENTO DE SERMÓN (duración: {duration:.1f} segundos):
     "{text}"
@@ -81,15 +80,12 @@ def create_clip_prompt(segment, count=7):
     RELEVANCIA TEOLÓGICA (Puntuación: {score}/50):
     {reasons}
     
-    Para cada idea, debes proporcionar:
-    1. Un título conciso y evocador
-    2. Una descripción detallada de la escena visual (ambientación, iluminación, personas, acciones, etc.)
-    3. Una frase específica del audio que esta escena ilustraría (cita exacta del texto)
-    4. Un prompt de generación de imagen conciso (1-2 líneas) que capture la esencia
+    FORMATO REQUERIDO - SÓLO PROMPTS NUMERADOS:
+    Prompt 1: [Descripción concisa de la primera escena visual - MAX 400 caracteres]
     
-    {examples}
+    Prompt 2: [Descripción concisa de la segunda escena visual - MAX 400 caracteres]
     
-    CONTINÚA GENERANDO HASTA COMPLETAR EXACTAMENTE {count} PROMPTS (3-7), NUMERADOS SECUENCIALMENTE.
+    Y así sucesivamente hasta completar exactamente {count} prompts.
     
     CONSIDERACIONES IMPORTANTES:
     - Asegúrate que cada escena propuesta sea adecuada para contenido religioso cristiano y respetuosa
@@ -98,13 +94,14 @@ def create_clip_prompt(segment, count=7):
     - Piensa en escenas que funcionen bien en formatos verticales para redes sociales
     - Varía entre escenas con personas, naturaleza, símbolos, y metáforas visuales
     - No repitas conceptos visuales entre los diferentes prompts
-    - Los prompts para generación de imagen deben funcionar bien con herramientas como Midjourney y DALL-E
+    - Asegúrate de que las escenas fluyan naturalmente en secuencia para contar una historia coherente
+    - Recuerda que estos prompts se usarán para generar clips de video de 8 segundos cada uno
+    - Utiliza lenguaje rico y descriptivo que Google AI Studio Veo2 pueda interpretar correctamente
     - Incluye detalles sobre iluminación, estilo artístico, ángulo y composición en los prompts
-    - Para el apartado de Prompt, escribe instrucciones que sirvan para generar una imagen de alta calidad
-    - Recuerda que los prompts serán usados para crear imágenes que acompañarán al audio del sermón
+    - NO INCLUYAS "Descripción:", "Frase del Audio:" u otros elementos - SÓLO LOS PROMPTS NUMERADOS
     """
     
-    return prompt
+    return prompt, count
 
 def save_prompt_file(output_path, filename, content):
     """Guarda un archivo de prompt en disco."""
@@ -131,11 +128,12 @@ def generate_clip_prompts(segment, claude_client, output_path, index):
         bool: True si se generó con éxito, False en caso contrario
     """
     try:
-        # Crear prompt para Claude
-        prompt = create_clip_prompt(segment)
+        # Crear prompt para Claude con número de clips basado en duración
+        prompt, prompt_count = create_clip_prompt(segment)
         
-        print(f"{Fore.CYAN}Generando ideas visuales para el segmento {index}...")
+        print(f"{Fore.CYAN}Generando {prompt_count} ideas para clips de 8 segundos (segmento {index})...")
         print(f"{Fore.CYAN}Extracto del texto: \"{segment['text'][:100]}...\"")
+        print(f"{Fore.CYAN}Duración total del reel: {segment['duration']:.1f} segundos")
         
         # Guardar un archivo con el texto del segmento para referencia (hacerlo primero)
         segment_info = f"TEXTO DEL SEGMENTO (REEL #{index})\n" + \
@@ -160,7 +158,7 @@ def generate_clip_prompts(segment, claude_client, output_path, index):
                 response = claude_client.messages.create(
                     model="claude-3-5-sonnet-20240620",  # Modelo reciente con capacidades creativas
                     max_tokens=4000,
-                    system="Eres un experto creativo en contenido religioso cristiano que genera ideas visuales y prompts detallados.",
+                    system="Eres un experto creativo en contenido religioso cristiano que genera ideas visuales para clips de video.",
                     messages=[
                         {"role": "user", "content": prompt}
                     ]
@@ -173,7 +171,7 @@ def generate_clip_prompts(segment, claude_client, output_path, index):
                     response = claude_client.messages.create(
                         model="claude-3-opus-20240229",  # Modelo alternativo
                         max_tokens=4000,
-                        system="Eres un experto creativo en contenido religioso cristiano que genera ideas visuales y prompts detallados.",
+                        system="Eres un experto creativo en contenido religioso cristiano que genera ideas visuales para clips de video.",
                         messages=[
                             {"role": "user", "content": prompt}
                         ]
@@ -186,32 +184,51 @@ def generate_clip_prompts(segment, claude_client, output_path, index):
             print(f"{Fore.RED}Error al llamar a la API de Claude: {e}")
             return False
         
-        # Procesar respuesta para asegurarse de que está bien formateada
-        if "**Prompt 1:" not in response_text:
-            print(f"{Fore.YELLOW}Advertencia: La respuesta no tiene el formato esperado de prompts")
-            # Intentar arreglar el formato
-            fixed_response = "PROMPTS GENERADOS PARA EL SEGMENTO:\n\n"
-            if "Prompt 1:" in response_text:
-                response_text = response_text.replace("Prompt 1:", "**Prompt 1:**")
-            if "Descripción:" in response_text:
-                response_text = response_text.replace("Descripción:", "**Descripción: **")
-            if "Frase del Audio:" in response_text:
-                response_text = response_text.replace("Frase del Audio:", "**Frase del Audio: **")
-            if "Prompt:" in response_text and "**Prompt " not in response_text:
-                response_text = response_text.replace("Prompt:", "**Prompt: **")
-            fixed_response += response_text
-            response_text = fixed_response
+        # Procesar y simplificar la respuesta
+        processed_response = response_text
         
-        # Guardar respuesta completa
+        # Limpiar la respuesta para que sólo tenga las líneas de "Prompt X:" 
+        lines = [line.strip() for line in response_text.split('\n') if line.strip()]
+        prompt_lines = [line for line in lines if line.startswith("Prompt ") or line.startswith("**Prompt ")]
+        
+        if prompt_lines:
+            # Limpiar formato extra que pueda haber añadido Claude
+            clean_prompts = []
+            for line in prompt_lines:
+                # Eliminar cualquier formato markdown como **
+                line = line.replace("**", "")
+                # Asegurarse de que comienza con "Prompt X:"
+                if not line.startswith("Prompt "):
+                    if ":" in line:
+                        parts = line.split(":", 1)
+                        line = f"Prompt {parts[0].strip().split()[-1]}: {parts[1].strip()}"
+                clean_prompts.append(line)
+            
+            # Unir las líneas con doble salto de línea para mejor legibilidad
+            processed_response = "PROMPTS PARA VEO2 (8 SEGUNDOS POR CLIP):\n\n"
+            processed_response += "\n\n".join(clean_prompts)
+        else:
+            # Si no encontramos líneas de prompts, intentar extraerlas con otro método
+            print(f"{Fore.YELLOW}Formato inesperado en la respuesta. Intentando extracción alternativa...")
+            # Buscar patrones como "Prompt 1:", "1:" o similares
+            import re
+            pattern = r"(?:Prompt\s*)?\d+:.*?"
+            matches = re.findall(pattern, response_text)
+            if matches:
+                processed_response = "PROMPTS PARA VEO2 (8 SEGUNDOS POR CLIP):\n\n"
+                processed_response += "\n\n".join([f"Prompt {i+1}: {m.split(':', 1)[1].strip()}" 
+                                                for i, m in enumerate(matches)])
+        
+        # Guardar respuesta procesada
         file_path = save_prompt_file(
             output_path, 
             f"prompts.txt",
-            response_text
+            processed_response
         )
                 
         if file_path:
             print(f"{Fore.GREEN}Prompts generados y guardados en: {file_path}")
-            print(f"{Fore.GREEN}Carpeta: {output_path}")
+            print(f"{Fore.GREEN}Se solicitaron {prompt_count} prompts para clips de 8 segundos")
             return True
         else:
             return False
@@ -370,10 +387,20 @@ def main():
     if success:
         print(f"\n{Fore.GREEN}{Style.BRIGHT}¡Generación de prompts para clips completada con éxito!")
         # Mostrar instrucciones de uso
-        print(f"\n{Fore.CYAN}Los prompts se han guardado en la siguiente estructura:")
-        print(f"{Fore.CYAN}  {reels_dir}/prompts/reel_XX/prompts.txt - Ideas visuales y prompts")
+        print(f"\n{Fore.CYAN}Los prompts se han guardado con un formato simplificado para Google AI Studio Veo2:")
+        print(f"{Fore.CYAN}  {reels_dir}/prompts/reel_XX/prompts.txt - Prompts para clips de 8 segundos")
         print(f"{Fore.CYAN}  {reels_dir}/prompts/reel_XX/segmento.txt - Texto del segmento de referencia")
-        print(f"\n{Fore.YELLOW}Puedes usar estos prompts con herramientas de generación de imágenes como Midjourney, DALL-E, etc.")
+        
+        print(f"\n{Fore.YELLOW}INSTRUCCIONES PARA USAR CON GOOGLE AI STUDIO VEO2:")
+        print(f"{Fore.YELLOW}1. Abre los archivos 'prompts.txt' en cada carpeta de reel")
+        print(f"{Fore.YELLOW}2. Copia cada prompt individualmente a Google AI Studio Veo2")
+        print(f"{Fore.YELLOW}3. Genera cada clip de 8 segundos con Veo2")
+        print(f"{Fore.YELLOW}4. Descarga los clips generados")
+        print(f"{Fore.YELLOW}5. Combina los clips en secuencia para cada reel")
+        print(f"{Fore.YELLOW}6. Sincroniza el audio original del reel con la secuencia de clips")
+        
+        print(f"\n{Fore.GREEN}NOTA: Los prompts han sido calculados para un total de clips de 8 segundos")
+        print(f"{Fore.GREEN}que coincidan aproximadamente con la duración total de cada reel")
     else:
         print(f"\n{Fore.RED}{Style.BRIGHT}La generación de prompts para clips ha fallado")
 
