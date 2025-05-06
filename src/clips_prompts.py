@@ -85,6 +85,10 @@ def create_clip_prompt(segment, count=7):
     - Piensa en escenas que funcionen bien en formatos verticales para redes sociales
     - Varía entre escenas con personas, naturaleza, símbolos, y metáforas visuales
     - No repitas conceptos visuales entre los diferentes prompts
+    - Los prompts para generación de imagen deben funcionar bien con herramientas como Midjourney y DALL-E
+    - Incluye detalles sobre iluminación, estilo artístico, ángulo y composición en los prompts
+    - Para el apartado de Prompt, escribe instrucciones que sirvan para generar una imagen de alta calidad
+    - Recuerda que los prompts serán usados para crear imágenes que acompañarán al audio del sermón
     """
     
     return prompt
@@ -138,8 +142,21 @@ def generate_clip_prompts(segment, claude_client, output_path, index):
         # Guardar respuesta completa
         file_path = save_prompt_file(
             output_path, 
-            f"reel_{index:02d}_prompts.txt",
+            f"prompts.txt",
             response_text
+        )
+        
+        # También guardar un archivo con el texto del segmento para referencia
+        segment_info = f"TEXTO DEL SEGMENTO (REEL #{index})\n" + \
+                       f"===========================================\n" + \
+                       f"Duración: {segment['duration']:.2f} segundos\n" + \
+                       f"Puntuación: {segment.get('score', 0)}\n\n" + \
+                       f"{segment['text']}\n\n" + \
+                       f"RAZONES:\n{segment.get('reasons', '')}\n"
+        info_path = save_prompt_file(
+            output_path,
+            f"segmento.txt",
+            segment_info
         )
         
         if file_path:
@@ -173,7 +190,7 @@ def process_reel_segments(segments_json_path, claude_client):
             print(f"{Fore.RED}No se encontraron segmentos en el archivo JSON")
             return False
         
-        # Crear carpeta para prompts si no existe
+        # Crear carpeta principal para prompts si no existe
         base_dir = os.path.dirname(segments_json_path)
         prompts_dir = os.path.join(base_dir, "prompts")
         os.makedirs(prompts_dir, exist_ok=True)
@@ -185,10 +202,14 @@ def process_reel_segments(segments_json_path, claude_client):
         for i, segment in enumerate(segments, 1):
             print(f"\n{Fore.CYAN}Procesando segmento {i}/{len(segments)}...")
             
+            # Crear una subcarpeta específica para este reel
+            reel_prompts_dir = os.path.join(prompts_dir, f"reel_{i:02d}")
+            os.makedirs(reel_prompts_dir, exist_ok=True)
+            
             success = generate_clip_prompts(
                 segment,
                 claude_client,
-                prompts_dir,
+                reel_prompts_dir,
                 i
             )
             
@@ -273,12 +294,25 @@ def main():
         print(f"{Fore.RED}Error: No se encontró el archivo JSON de segmentos: {segments_json_path}")
         print(f"{Fore.RED}Ejecuta primero 'extract_reels.py' para este sermón")
         sys.exit(1)
+        
+    # Verificar que existen los archivos de audio y texto de los reels
+    reels_audio_dir = os.path.join(reels_dir, "audio")
+    reels_text_dir = os.path.join(reels_dir, "text")
+    
+    if not os.path.isdir(reels_audio_dir) or not os.path.isdir(reels_text_dir):
+        print(f"{Fore.YELLOW}Advertencia: No se encontraron las carpetas de audio o texto de reels")
+        print(f"{Fore.YELLOW}Es posible que los reels no se hayan extraído correctamente")
     
     # Procesar segmentos
     success = process_reel_segments(segments_json_path, claude_client)
     
     if success:
         print(f"\n{Fore.GREEN}{Style.BRIGHT}¡Generación de prompts para clips completada con éxito!")
+        # Mostrar instrucciones de uso
+        print(f"\n{Fore.CYAN}Los prompts se han guardado en la siguiente estructura:")
+        print(f"{Fore.CYAN}  {reels_dir}/prompts/reel_XX/prompts.txt - Ideas visuales y prompts")
+        print(f"{Fore.CYAN}  {reels_dir}/prompts/reel_XX/segmento.txt - Texto del segmento de referencia")
+        print(f"\n{Fore.YELLOW}Puedes usar estos prompts con herramientas de generación de imágenes como Midjourney, DALL-E, etc.")
     else:
         print(f"\n{Fore.RED}{Style.BRIGHT}La generación de prompts para clips ha fallado")
 
