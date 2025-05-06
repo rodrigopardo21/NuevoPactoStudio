@@ -70,9 +70,13 @@ def create_clip_prompt(segment, count=None):
     Cada prompt debe poder ilustrar/visualizar una parte específica del mensaje y ser útil para crear clips
     de video generativo que acompañen el audio.
     
-    IMPORTANTE: Cada clip de video tendrá una duración de aproximadamente 8 segundos, y en total
-    necesito cubrir un audio de {duration:.1f} segundos. Debes asegurarte de que tus {count} ideas
-    cubran adecuadamente el mensaje completo del segmento.
+    IMPORTANTE: 
+    1. Cada clip de video tendrá una duración de aproximadamente 8 segundos
+    2. En total necesito cubrir un audio de {duration:.1f} segundos con {count} clips
+    3. Los clips DEBEN CONTAR UNA HISTORIA FLUIDA cuando se pongan en secuencia
+    4. Utiliza movimiento y progresión en las escenas - ESTOS SON VIDEOS, NO IMÁGENES ESTÁTICAS
+    5. Diseña cada prompt pensando en cómo fluye desde el clip anterior y hacia el siguiente
+    6. Mantener consistencia visual (estilo, personajes, tono) entre todos los clips
     
     SEGMENTO DE SERMÓN (duración: {duration:.1f} segundos):
     "{text}"
@@ -81,25 +85,29 @@ def create_clip_prompt(segment, count=None):
     {reasons}
     
     FORMATO REQUERIDO - SÓLO PROMPTS NUMERADOS:
-    Prompt 1: [Descripción concisa de la primera escena visual - MAX 400 caracteres]
+    Prompt 1: [Descripción concisa de la primera escena visual EN MOVIMIENTO - MAX 400 caracteres]
     
-    Prompt 2: [Descripción concisa de la segunda escena visual - MAX 400 caracteres]
+    Prompt 2: [Descripción concisa de la segunda escena visual EN MOVIMIENTO que CONTINUA LA NARRATIVA - MAX 400 caracteres]
     
-    Y así sucesivamente hasta completar exactamente {count} prompts.
+    Y así sucesivamente hasta completar exactamente {count} prompts, asegurando una narrativa visual FLUIDA y COHERENTE.
     
     CONSIDERACIONES IMPORTANTES:
+    - Diseña una NARRATIVA VISUAL COHESIVA que fluya a través de los {count} clips
+    - Especifica MOVIMIENTO y ACCIÓN en cada prompt (cámara en movimiento, personas realizando acciones, etc.)
+    - Indica TRANSICIONES sugeridas entre cada clip para mantener continuidad
+    - Mantener consistencia en elementos visuales (personajes, locaciones, colores, etc.) entre clips
     - Asegúrate que cada escena propuesta sea adecuada para contenido religioso cristiano y respetuosa
     - Evita escenas que requieran representaciones directas de deidad o figuras bíblicas sagradas
     - Prefiere escenas con ambientación contemporánea o metafórica que ilustre principios bíblicos
     - Piensa en escenas que funcionen bien en formatos verticales para redes sociales
-    - Varía entre escenas con personas, naturaleza, símbolos, y metáforas visuales
-    - No repitas conceptos visuales entre los diferentes prompts
+    - Varía entre escenas con personas, naturaleza, símbolos, y metáforas visuales pero MANTENER COHERENCIA
     - Asegúrate de que las escenas fluyan naturalmente en secuencia para contar una historia coherente
     - Recuerda que estos prompts se usarán para generar clips de video de 8 segundos cada uno
     - Utiliza lenguaje rico y descriptivo que Google AI Studio Veo2 pueda interpretar correctamente
     - Incluye detalles sobre iluminación, estilo artístico, ángulo y composición en los prompts
     - NO INCLUYAS "Descripción:", "Frase del Audio:" u otros elementos - SÓLO LOS PROMPTS NUMERADOS
     """
+    
     
     return prompt, count
 
@@ -394,13 +402,14 @@ def main():
         print(f"\n{Fore.YELLOW}INSTRUCCIONES PARA USAR CON GOOGLE AI STUDIO VEO2:")
         print(f"{Fore.YELLOW}1. Abre los archivos 'prompts.txt' en cada carpeta de reel")
         print(f"{Fore.YELLOW}2. Copia cada prompt individualmente a Google AI Studio Veo2")
-        print(f"{Fore.YELLOW}3. Genera cada clip de 8 segundos con Veo2")
-        print(f"{Fore.YELLOW}4. Descarga los clips generados")
-        print(f"{Fore.YELLOW}5. Combina los clips en secuencia para cada reel")
+        print(f"{Fore.YELLOW}3. Genera cada clip de 8 segundos con Veo2 en orden secuencial")
+        print(f"{Fore.YELLOW}4. Descarga los clips generados manteniendo el orden de la narrativa")
+        print(f"{Fore.YELLOW}5. Combina los clips en secuencia (1->2->3...) para mantener la historia visual")
         print(f"{Fore.YELLOW}6. Sincroniza el audio original del reel con la secuencia de clips")
         
-        print(f"\n{Fore.GREEN}NOTA: Los prompts han sido calculados para un total de clips de 8 segundos")
-        print(f"{Fore.GREEN}que coincidan aproximadamente con la duración total de cada reel")
+        print(f"\n{Fore.GREEN}NOTA: Los prompts han sido diseñados para crear una narrativa visual FLUIDA")
+        print(f"{Fore.GREEN}con clips de 8 segundos que se conectan entre sí para contar una historia")
+        print(f"{Fore.GREEN}que complementa el audio del reel. Asegúrate de mantener el orden.")
     else:
         print(f"\n{Fore.RED}{Style.BRIGHT}La generación de prompts para clips ha fallado")
 
