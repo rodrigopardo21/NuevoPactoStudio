@@ -53,10 +53,25 @@ def create_clip_prompt(segment, count=7):
     score = segment.get("score", 0)
     reasons = segment.get("reasons", "")
     
+    # Creamos ejemplos explícitos para el formato de prompts
+    examples = """
+    EJEMPLOS DE FORMATO:
+    
+    **Prompt 1: Fe en Acción**
+    **Descripción: **Una persona joven de pie en lo alto de una montaña al amanecer con brazos extendidos. La luz dorada ilumina su silueta, mientras nubes suaves flotan por debajo. La escena transmite esperanza, libertad y conexión espiritual.
+    **Frase del Audio: **"La fe verdadera siempre nos impulsa a levantarnos y actuar."
+    **Prompt: **"Silueta inspiradora de persona en cima de montaña al amanecer, brazos extendidos en alabanza, luz dorada, nubes suaves por debajo, formato vertical, fotografía cinematográfica, tonos cálidos, esperanza, libertad espiritual."
+    
+    **Prompt 2: Camino de Luz**
+    **Descripción: **Un sendero iluminado a través de un bosque oscuro. Rayos de luz atraviesan el dosel de árboles, iluminando el camino. Pequeñas partículas de luz danzan en el aire, creando una atmósfera mística y espiritual.
+    **Frase del Audio: **"Dios siempre ilumina nuestro camino, incluso en los momentos más oscuros."
+    **Prompt: **"Sendero iluminado en bosque oscuro, rayos de luz divina atravesando árboles, partículas luminosas en el aire, atmósfera mística, profundidad de campo, luz volumétrica, fotografía detallada, HDR, inspirador, guía espiritual."
+    """
+    
     prompt = f"""
     Eres un experto creativo en generación de ideas visuales para contenido religioso cristiano.
     
-    Necesito que generes {count} ideas de prompts visuales (escenas) basados en el siguiente segmento de sermón.
+    Necesito que generes exactamente {count} ideas de prompts visuales (escenas) basados en el siguiente segmento de sermón.
     Cada prompt debe poder ilustrar/visualizar una parte específica del mensaje y ser útil para crear
     imágenes o videos generativos que acompañen el audio.
     
@@ -66,17 +81,15 @@ def create_clip_prompt(segment, count=7):
     RELEVANCIA TEOLÓGICA (Puntuación: {score}/50):
     {reasons}
     
-    Para cada idea, proporciona:
-    1. Un título conciso
+    Para cada idea, debes proporcionar:
+    1. Un título conciso y evocador
     2. Una descripción detallada de la escena visual (ambientación, iluminación, personas, acciones, etc.)
     3. Una frase específica del audio que esta escena ilustraría (cita exacta del texto)
     4. Un prompt de generación de imagen conciso (1-2 líneas) que capture la esencia
     
-    Formato para cada idea:
-    **Prompt {num}: [Título]**
-    **Descripción: **[Descripción detallada de la escena visual]
-    **Frase del Audio: **"[Cita textual del segmento]"
-    **Prompt: **"[Prompt de generación de imagen]"
+    {examples}
+    
+    CONTINÚA GENERANDO HASTA COMPLETAR EXACTAMENTE {count} PROMPTS (3-7), NUMERADOS SECUENCIALMENTE.
     
     CONSIDERACIONES IMPORTANTES:
     - Asegúrate que cada escena propuesta sea adecuada para contenido religioso cristiano y respetuosa
@@ -124,29 +137,7 @@ def generate_clip_prompts(segment, claude_client, output_path, index):
         print(f"{Fore.CYAN}Generando ideas visuales para el segmento {index}...")
         print(f"{Fore.CYAN}Extracto del texto: \"{segment['text'][:100]}...\"")
         
-        # Llamar a la API de Claude
-        try:
-            response = claude_client.messages.create(
-                model="claude-3-5-sonnet-20240620",  # Modelo reciente con capacidades creativas
-                max_tokens=4000,
-                system="Eres un experto creativo en contenido religioso cristiano que genera ideas visuales y prompts detallados.",
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
-            response_text = response.content[0].text
-        except Exception as e:
-            print(f"{Fore.RED}Error al llamar a la API de Claude: {e}")
-            return False
-        
-        # Guardar respuesta completa
-        file_path = save_prompt_file(
-            output_path, 
-            f"prompts.txt",
-            response_text
-        )
-        
-        # También guardar un archivo con el texto del segmento para referencia
+        # Guardar un archivo con el texto del segmento para referencia (hacerlo primero)
         segment_info = f"TEXTO DEL SEGMENTO (REEL #{index})\n" + \
                        f"===========================================\n" + \
                        f"Duración: {segment['duration']:.2f} segundos\n" + \
@@ -159,14 +150,84 @@ def generate_clip_prompts(segment, claude_client, output_path, index):
             segment_info
         )
         
+        if not info_path:
+            print(f"{Fore.YELLOW}Advertencia: No se pudo guardar el archivo de información del segmento")
+        
+        # Llamar a la API de Claude
+        try:
+            # Intentar con el modelo claude-3-5-sonnet primero
+            try:
+                response = claude_client.messages.create(
+                    model="claude-3-5-sonnet-20240620",  # Modelo reciente con capacidades creativas
+                    max_tokens=4000,
+                    system="Eres un experto creativo en contenido religioso cristiano que genera ideas visuales y prompts detallados.",
+                    messages=[
+                        {"role": "user", "content": prompt}
+                    ]
+                )
+                response_text = response.content[0].text
+            except Exception as model_e:
+                # Si falla, intentar con claude-3-opus como respaldo
+                print(f"{Fore.YELLOW}Advertencia: Error con modelo sonnet, probando con opus: {model_e}")
+                try:
+                    response = claude_client.messages.create(
+                        model="claude-3-opus-20240229",  # Modelo alternativo
+                        max_tokens=4000,
+                        system="Eres un experto creativo en contenido religioso cristiano que genera ideas visuales y prompts detallados.",
+                        messages=[
+                            {"role": "user", "content": prompt}
+                        ]
+                    )
+                    response_text = response.content[0].text
+                except Exception as backup_e:
+                    print(f"{Fore.RED}Error al llamar a la API de Claude con ambos modelos: {backup_e}")
+                    return False
+        except Exception as e:
+            print(f"{Fore.RED}Error al llamar a la API de Claude: {e}")
+            return False
+        
+        # Procesar respuesta para asegurarse de que está bien formateada
+        if "**Prompt 1:" not in response_text:
+            print(f"{Fore.YELLOW}Advertencia: La respuesta no tiene el formato esperado de prompts")
+            # Intentar arreglar el formato
+            fixed_response = "PROMPTS GENERADOS PARA EL SEGMENTO:\n\n"
+            if "Prompt 1:" in response_text:
+                response_text = response_text.replace("Prompt 1:", "**Prompt 1:**")
+            if "Descripción:" in response_text:
+                response_text = response_text.replace("Descripción:", "**Descripción: **")
+            if "Frase del Audio:" in response_text:
+                response_text = response_text.replace("Frase del Audio:", "**Frase del Audio: **")
+            if "Prompt:" in response_text and "**Prompt " not in response_text:
+                response_text = response_text.replace("Prompt:", "**Prompt: **")
+            fixed_response += response_text
+            response_text = fixed_response
+        
+        # Guardar respuesta completa
+        file_path = save_prompt_file(
+            output_path, 
+            f"prompts.txt",
+            response_text
+        )
+                
         if file_path:
             print(f"{Fore.GREEN}Prompts generados y guardados en: {file_path}")
+            print(f"{Fore.GREEN}Carpeta: {output_path}")
             return True
         else:
             return False
             
     except Exception as e:
-        print(f"{Fore.RED}Error al generar prompts para clips: {e}")
+        print(f"{Fore.RED}Error al generar prompts para clips: {str(e)}")
+        # Guardar un archivo de error para diagnóstico
+        error_info = f"ERROR AL PROCESAR SEGMENTO #{index}\n" + \
+                    f"===========================================\n" + \
+                    f"Error: {str(e)}\n\n" + \
+                    f"Texto del segmento:\n{segment.get('text', 'No disponible')}\n"
+        error_path = save_prompt_file(
+            output_path,
+            f"error.txt",
+            error_info
+        )
         return False
 
 def process_reel_segments(segments_json_path, claude_client):
