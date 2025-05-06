@@ -143,22 +143,6 @@ def generate_clip_prompts(segment, claude_client, output_path, index):
         print(f"{Fore.CYAN}Extracto del texto: \"{segment['text'][:100]}...\"")
         print(f"{Fore.CYAN}Duración total del reel: {segment['duration']:.1f} segundos")
         
-        # Guardar un archivo con el texto del segmento para referencia (hacerlo primero)
-        segment_info = f"TEXTO DEL SEGMENTO (REEL #{index})\n" + \
-                       f"===========================================\n" + \
-                       f"Duración: {segment['duration']:.2f} segundos\n" + \
-                       f"Puntuación: {segment.get('score', 0)}\n\n" + \
-                       f"{segment['text']}\n\n" + \
-                       f"RAZONES:\n{segment.get('reasons', '')}\n"
-        info_path = save_prompt_file(
-            output_path,
-            f"segmento.txt",
-            segment_info
-        )
-        
-        if not info_path:
-            print(f"{Fore.YELLOW}Advertencia: No se pudo guardar el archivo de información del segmento")
-        
         # Llamar a la API de Claude
         try:
             # Intentar con el modelo claude-3-5-sonnet primero
@@ -396,8 +380,7 @@ def main():
         print(f"\n{Fore.GREEN}{Style.BRIGHT}¡Generación de prompts para clips completada con éxito!")
         # Mostrar instrucciones de uso
         print(f"\n{Fore.CYAN}Los prompts se han guardado con un formato simplificado para Google AI Studio Veo2:")
-        print(f"{Fore.CYAN}  {reels_dir}/prompts/reel_XX/prompts.txt - Prompts para clips de 8 segundos")
-        print(f"{Fore.CYAN}  {reels_dir}/prompts/reel_XX/segmento.txt - Texto del segmento de referencia")
+        print(f"{Fore.CYAN}  {reels_dir}/prompts/reel_XX/prompts.txt - Secuencia de clips de 8 segundos")
         
         print(f"\n{Fore.YELLOW}INSTRUCCIONES PARA USAR CON GOOGLE AI STUDIO VEO2:")
         print(f"{Fore.YELLOW}1. Abre los archivos 'prompts.txt' en cada carpeta de reel")
